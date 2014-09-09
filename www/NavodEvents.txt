@@ -1,0 +1,21 @@
+**********************************************
+The properties of the event object covered 
+
+
+Event  		Object Property Description 
+SrcElement 	The element that fired the event 
+type 		Type of event 
+returnValue 	Determines whether the event is cancelled (false) 
+cancelBubble 	Can cancel an event bubble (true)
+clientX 	Mouse pointer X coordinate relative to window 
+clientY 	Mouse pointer Y coordinate relative to window 
+offsetX 	Mouse pointer X coordinate relative to element that fired the event 
+offsetY 	Mouse pointer Y coordinate relative to element that fired the event 
+button 		Any mouse buttons that are pressed 
+altKey 		True if the alt key was also pressed 
+ctrlKey 	True if the ctrl key was also pressed 
+shiftKey 	True if the shift key was also pressed 
+keyCode 	Returns UniCode value of key pressed 
+
+****************************************************
+

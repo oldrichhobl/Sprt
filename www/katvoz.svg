@@ -1,0 +1,27 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!--
+   ***************************************************************************
+   Bundesanstalt fuer Strassenwesen
+   RWB-Symbol
+   Bezeichnung:
+   Parkhaus, Parkgarage
+   Ausdehnung in cm:
+         X_min     X_max     Y_min     Y_max
+         0.00000  15.00000   0.00000  15.00000
+-->
+<svg width="150" height="150" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<!--
+   ***************************************************************************
+-->
+<path fill="#003399" fill-rule="evenodd" stroke="none" d="M0 150L150 150L150 0L0 0L0 150Z" />
+<!--
+      INHALT
+-->
+<path fill="white" fill-rule="evenodd" stroke="none" d="M48.6607 140L48.6607 50L84.0178 50A27.3214 27.3214 0 0 1 107.678826466956 90.9821A27.3214 27.3214 0 0 1 84.0178 104.6428L62.3214 104.6429L62.3214 140L48.6607 140Z
+  M62.3214 91.7857L83.2143 91.7857A14.4643 14.4643 0 0 0 95.7407512479593 70.08925A14.4643 14.4643 0 0 0 83.2143 62.8571L62.3214 62.8571L62.3214 91.7857Z" />
+<!--
+      DACH
+-->
+<path fill="white" fill-rule="evenodd" stroke="none" d="M5 60L5 40L75 10L145 40L145 60L75 30L5 60Z" />
+</svg>

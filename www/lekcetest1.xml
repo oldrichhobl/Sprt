@@ -1,0 +1,1194 @@
+<?xml version="1.0" encoding="Windows-1250" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="showsprt.xsl" ?>
+<SPRT>
+	<INFO>
+		<SUBJECT>Empty </SUBJECT>
+		<AUTHOR>dramatik</AUTHOR>
+		<EMAIL>sprt@dramatik.cz  </EMAIL>
+		<VERSION>1.00  </VERSION>
+	</INFO>
+	<ORIGIN>
+		<PODNIK> Unknown  </PODNIK>
+		<DATE>25.12.2013  </DATE>
+		<SESTAVAN typses="unknown">1 </SESTAVAN>
+		<SESTAVATX>Lekce z WWW apk</SESTAVATX>
+		<ORIGTIME>695559204 </ORIGTIME>
+		<PARAMS>0 </PARAMS>
+	</ORIGIN>
+	<HEADER>
+		<NAZEV>Test č.1.</NAZEV>
+		<KEY>00000000000000000000001</KEY>
+		<PATHIMG>//server/data/img</PATHIMG>
+		<PATHAUDIO>//server/data/audio</PATHAUDIO>
+	</HEADER>
+	<RECS>
+		<R>
+			<W1>Slovíčko vzorové z WWW APK</W1>
+			<V>
+				<W2 audio="zvuk.mp3" pron="vourd">Word</W2>
+				<img src="obrazek.png"/>
+			</V>
+			<V>
+				<W2 audio="zvuk2.mp3" pron="vourdss">Word</W2>
+				<img src="obrazek2.png"/>
+			</V>
+		</R>
+		
+		
+		<R>
+			<W1>Bavorsko</W1>
+			<V>
+				
+				<W2>Bavaria</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>Beda Ctihodný</W1>
+			<V>
+				
+				<W2>the Venerable Bede</W2>
+				<W2>zde skutečně v tomto pořadí</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>Beda</W1>
+			<V>
+				
+				<W2>Bede</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>Beda</W1>
+			<V>
+				
+				<W2>Bede</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>Benátčan</W1>
+			<V>
+				
+				<W2>Venetian</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>Beránek Boží</W1>
+			<V>
+				
+				<W2>Lamb of God</W2>
+			</V>
+		
+		
+		</R>
+		
+		<R>
+			<W1>bezděky, neúmyslně</W1>
+			<V>
+				<W2>inadvertently</W2>
+			</V>
+		</R>
+		
+		<R>
+			<W1>bezstarostně</W1>
+			<V>
+				<W2>jauntily</W2>
+			</V>
+		
+		</R>
+		<R>
+			<W1>bezstarostně</W1>
+			<V>
+				
+				<W2>jauntily</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>bičovat, mrskat, trestat; deptat, sužovat, ničit</W1>
+			<V>
+				
+				<W2>scourge</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>bičovat, šlehat</W1>
+			<V>
+				
+				<W2>flog</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>bičovat, šlehat</W1>
+			<V>
+				
+				<W2>flog</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>blahobyt, bohatství</W1>
+			<V>
+				
+				<W2>wealth</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>blahoslavit, prohlásit svatým ; posvětit</W1>
+			<V>
+				
+				<W2>hallow</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>bloudit, chybovat, hřešit</W1>
+			<V>
+				
+				<W2>err</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>blázen, pomatenec, šílenec</W1>
+			<V>
+				
+				<W2>lunatic</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>blázen, pomatenec, šílenec</W1>
+			<V>
+				
+				<W2>lunatic</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>blízký bratranec</W1>
+			<V>
+				<W2>cousin nigh</W2>
+			</V>
+		</R>
+		<R>
+			<W1>blízký bratranec</W1>
+			<V>
+				
+				<W2>cousin nigh</W2>
+			</V>
+		</R>
+		<R>
+			<W1>bochník ; homole (cukru)</W1>
+			<V>
+				
+				<W2>loaf</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>Bohočlověk (o Kristu)</W1>
+			<V>
+				
+				<W2>God-Man</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>boj o investituru</W1>
+			<V>
+				
+				<W2>Investiture Contest</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>bojovný, válečný</W1>
+			<V>
+				
+				<W2>warlike</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>Boží hrob</W1>
+			<V>
+				
+				<W2>Holy Sepulchre</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>Bretagne</W1>
+			<V>
+				
+				<W2>Brittany</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>Bretaň, Bretagne</W1>
+			<V>
+				
+				<W2>Brittany</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>Bretaň</W1>
+			<V>
+				<W2>Brittany</W2>
+			</V>
+		</R>
+		<R>
+			<W1>bublat, klokotat, vřít</W1>
+			<V>
+				
+				<W2>bubble</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>bublat, klokotat, vřít</W1>
+			<V>
+				
+				<W2>bubble</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>bula (výnos)</W1>
+			<V>
+				
+				<W2>bull</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>Bulharobijec</W1>
+			<V>
+				<W2>Bulgaroctonus</W2>
+			</V>
+		</R>
+		<R>
+			<W1>buňka ; článek ; cela</W1>
+			<V>
+				
+				<W2>cell</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>bydliště, byt, sídlo</W1>
+			<V>
+				
+				<W2>seat</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>bít se v prsa (projev pokání)</W1>
+			<V>
+				
+				<W2>beat one&#8217;s breast</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>být na pochybách</W1>
+			<V>
+				
+				<W2>to be in quandary</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>během času</W1>
+			<V>
+				
+				<W2>in the course of time</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>celonoční, trvající celou noc</W1>
+			<V>
+				
+				<W2>all-night</W2>
+			
+			
+			</V>
+		</R>
+		<R>
+			<W1>celá škála</W1>
+			<V>
+				<W2>whole range </W2>
+			</V>
+		
+		</R>
+		<R>
+			<W1>cestopis</W1>
+			<V>
+				
+				<W2>travelogue</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>chabý odraz</W1>
+			<V>
+				
+				<W2>pale reflection</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>chlubit se, stavět na odiv </W1>
+			
+			<V>
+				
+				<W2>vaunt</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>chlubit se, stavět na odiv</W1>
+			<V>
+				
+				<W2>vaunt</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>chlípnost, chtíč, žádost, rozkoš</W1>
+			<V>
+				
+				<W2>lust</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>chlípnost, oplzlost, lascívnost, obscénnost, pornografičnost</W1>
+			<V>
+				
+				<W2>lewdness</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>chlípný, lascivní, oplzlý, obscénní ; pornografický</W1>
+			<V>
+				
+				<W2>lewd</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>chlípný, lascivní, oplzlý, obscénní; pornografický</W1>
+			<V>
+				
+				<W2>lewd</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>chovat (nenávist, lásku), opatrovat (s láskou), starat se (láskyplně)</W1>
+			<V>
+				
+				<W2>cherish</W2>
+			
+			</V>
+		</R>
+		
+		
+		<R>
+			<W1>chybět, nebýt k dispozici</W1>
+			<V>
+				
+				<W2>to be lacking</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>chápat, pochopit, zahrnout</W1>
+			<V>
+				
+				<W2>comprehend</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>chápat, pochopit, zahrnout</W1>
+			<V>
+				
+				<W2>comprehend</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>chápání (i ve smyslu &#8222;pojetí&#8220;)</W1>
+			<V>
+				
+				<W2>understanding</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>cisterciácký, cistercký</W1>
+			<V>
+				
+				<W2>Cistercian</W2>
+			
+			
+			</V>
+		</R>
+		<R>
+			<W1>consolamentum (katarská svátost)</W1>
+			<V>
+				
+				<W2>consolamentum</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>ctihodný, důstojný, hodný, pěkný</W1>
+			<V>
+				
+				<W2>worthy</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>ctihodný, důstojný, hodný, pěkný</W1>
+			<V>
+				
+				<W2>worthy</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>ctění, uctívání</W1>
+			<V>
+				
+				<W2>veneration</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>dalekosáhlé důsledky, dalekosáhlé následky</W1>
+			<V>
+				
+				<W2>far-reaching consequences</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>daleký, vzdálený, odlehlý</W1>
+			<V>
+				
+				<W2>remote</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>danost (fakt, že je něco dáno)</W1>
+			<V>
+				
+				<W2>givenness</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>daná fakta</W1>
+			<V>
+				
+				<W2>the present facts</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>daně, daň, zdanění</W1>
+			<V>
+				
+				<W2>taxation</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>dav, lůza, chátra, zástup ; hromadně napadnout, zlynčovat, srocovat se, dotírat</W1>
+			<V>
+				
+				<W2>mob</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>distinktivní rys</W1>
+			<V>
+				
+				<W2>distinctive feature</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>divotvůrce</W1>
+			<V>
+				
+				<W2>miracle worker</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>divotvůrce (často se uvádí též nom. &#8222;divotvorce&#8220;)</W1>
+			<V>
+				
+				<W2>miracle worker</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>dobře míněná snaha, dobře míněné úsilí</W1>
+			<V>
+				
+				<W2>well-intentioned efforts</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>dobře míněný</W1>
+			<V>
+				
+				<W2>well-intentioned</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>dochovaný (např. rukopis)</W1>
+			<V>
+				
+				<W2>surviving</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>dochovaný (např. rukopis)</W1>
+			<V>
+				
+				<W2>surviving</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>dochovaný rukopis</W1>
+			<V>
+				
+				<W2>surviving manuscript</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>dochovaný rukopis</W1>
+			<V>
+				
+				<W2>surviving manuscript</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>dohad, domněnka, starost</W1>
+			<V>
+				
+				<W2>surmise</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>dohadovat se, tušit, domnívat se ; podezírat</W1>
+			<V>
+				
+				<W2>surmise</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>dohadovat se, tušit, domnívat se; podezírat</W1>
+			<V>
+				
+				<W2>surmise</W2>
+			
+			</V>
+		</R>
+		
+		<R>
+			<W1>doktrína, nauka ; princip, zásada</W1>
+			<V>
+				
+				<W2>tenet</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>domluva, přemluvení</W1>
+			<V>
+				
+				<W2>suasion</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>domorodý, původní</W1>
+			<V>
+				
+				<W2>native</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>doplněk</W1>
+			<V>
+				
+				<W2>accessory</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>dostupný (existující)</W1>
+			<V>
+				
+				<W2>extant</W2>
+			
+			</V>
+		</R>
+		
+		<R>
+			<W1>doupě, úkryt, brloh</W1>
+			<V>
+				
+				<W2>haunt</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>drancovat</W1>
+			<V>
+				
+				<W2>forage</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>družina</W1>
+			<V>
+				
+				<W2>retinue</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>drůbež, pták, slepice</W1>
+			<V>
+				
+				<W2>fowl</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>drůbež, pták, slepice</W1>
+			<V>
+				
+				<W2>fowl</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>dvořan</W1>
+			<V>
+				
+				<W2>courtier</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>dát do oběhu, vypustit</W1>
+			<V>
+				
+				<W2>emit</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>dělník, ...</W1>
+			<V>
+				
+				<W2>hand</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>dříve, v dřívější době ; jindy</W1>
+			<V>
+				
+				<W2>formerly</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>dříve, v dřívější době; jindy</W1>
+			<V>
+				
+				<W2>formerly</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>důmysl, duchaplnost</W1>
+			<V>
+				
+				<W2>ingenuity</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>ekologicky</W1>
+			<V>
+				
+				<W2>ecologically</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>ekologicky uvědomělý</W1>
+			<V>
+				
+				<W2>ecologically aware</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>elf</W1>
+			<V>
+				
+				<W2>elf</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>elfové</W1>
+			<V>
+				
+				<W2>elves</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>Elíša (biblický prorok)</W1>
+			<V>
+				
+				<W2>Elisha</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>Epos o Gilgamešovi</W1>
+			<V>
+				
+				<W2>Epic of Gilgamesh</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>eucharistická úcta</W1>
+			<V>
+				
+				<W2>Eucharistic devotion</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>existující</W1>
+			<V>
+				
+				<W2>extant</W2>
+				<W2>sic</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>falešný, klamný, planý ; pokleslý ; dutý</W1>
+			<V>
+				
+				<W2>hollow</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>falešný, klamný, planý; pokleslý; dutý</W1>
+			<V>
+				
+				<W2>hollow</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>farář</W1>
+			<V>
+				
+				<W2>parish priest</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>genitálie, varlata</W1>
+			<V>
+				
+				<W2>testicles</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>genitálie, varlata</W1>
+			<V>
+				
+				<W2>testicles</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>ghibellin, ghibellinský</W1>
+			<V>
+				
+				<W2>Ghibellin</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>guelf, guelfský</W1>
+			<V>
+				
+				<W2>Guelf</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>gumovník</W1>
+			<V>
+				
+				<W2>gum tree</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>gumovník</W1>
+			<V>
+				
+				<W2>gum tree</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>hanebný, ohavný</W1>
+			<V>
+				
+				<W2>abominable</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>historický kontext</W1>
+			<V>
+				
+				<W2>historical context</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>hlubinná psychologie</W1>
+			<V>
+				
+				<W2>depth psychology</W2>
+			
+			</V>
+		</R>
+		
+		<R>
+			<W1>hluk, neklid, pobouření, vzpoura; prohra-bovat oheň, odejít, povzbudit, vstát, vzkypět</W1>
+			<V>
+				
+				<W2>stir</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>hluk, neklid, pobouření, vzpoura; prohrabovat oheň, odejít, povzbudit, vstát, vzkypět</W1>
+			<V>
+				
+				<W2>stir</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>hlína, jíl</W1>
+			<V>
+				
+				<W2>clay</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>hnisat, zhnisat</W1>
+			<V>
+				
+				<W2>ulcerate</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>hnusit si  (co</W1>
+			
+			
+			<V>
+				
+				<W2>abhor</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>hobit</W1>
+			<V>
+				
+				<W2>hobbit</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>holubice</W1>
+			<V>
+				
+				<W2>dove</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>horlivost, píle</W1>
+			<V>
+				
+				<W2>diligence</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>horlivost, píle</W1>
+			<V>
+				
+				<W2>diligence</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>horlivost, vroucnost, žár, zápal</W1>
+			<V>
+				
+				<W2>fervour</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>hostitel ; armáda ; dav ; velké množství</W1>
+			<V>
+				
+				<W2>host</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>hostitel; armáda; dav; velké množství</W1>
+			<V>
+				
+				<W2>host</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>hromada</W1>
+			<V>
+				
+				<W2>a mass</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>hrozba</W1>
+			<V>
+				
+				<W2>threat</W2>
+			
+			</V>
+		</R>
+		
+		<R>
+			<W1>hrozba, výhrůžka; zlá předtucha</W1>
+			<V>
+				
+				<W2>threat</W2>
+			
+			</V>
+		</R>
+		
+		
+		<R>
+			<W1>hájit zájmy, propagovat, podporovat, podpořit (i svůj názor argumentem)</W1>
+			<V>
+				
+				<W2>promote</W2>
+			
+			</V>
+		</R>
+		
+		
+		<R>
+			<W1>hříšný, omylný, chybující, náchylný k hříchu</W1>
+			<V>
+				
+				<W2>peccable</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>i podle dobových měřítek</W1>
+			<V>
+				
+				<W2>even by the standards of the time</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>informátor</W1>
+			<V>
+				
+				<W2>informant [sic!]</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>inkviziční záznamy, inkviziční akta</W1>
+			<V>
+				
+				<W2>inquisitorial records</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>inkviziční záznamy, inkviziční akta</W1>
+			<V>
+				
+				<W2>inquisitorial records</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>jak se říkává, jak se obvykle říkává</W1>
+			<V>
+				
+				<W2>as it is customary to say</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>Jakub Menší</W1>
+			<V>
+				
+				<W2>James the Less</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>Jan Scotus Eriugena</W1>
+			<V>
+				
+				<W2>John Scotus Erigena</W2>
+			
+			
+			</V>
+		</R>
+		<R>
+			<W1>Jan Zlatoústý</W1>
+			<V>
+				
+				<W2>John Chrysostom</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>Janov</W1>
+			<V>
+				
+				<W2>Genoa</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>Janov</W1>
+			<V>
+				
+				<W2>Genoa</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>je možná předčasné</W1>
+			<V>
+				
+				<W2>it may be premature</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>je možná předčasné</W1>
+			<V>
+				
+				<W2>it may be premature</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>Jeroným</W1>
+			<V>
+				
+				<W2>Jerome</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>jesle</W1>
+			<V>
+				
+				<W2>crib</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>ještě jindy</W1>
+			<V>
+				
+				<W2>at still other times</W2>
+			
+			</V>
+		</R>
+		<R>
+			<W1>Ježíšek</W1>
+			<V>
+				
+				<W2>Christ Child</W2>
+			
+			</V>
+		</R>
+	</RECS>
+	</SPRT>
+
