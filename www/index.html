@@ -3,6 +3,7 @@
 <!-- 
   Změny:
     2014-07-05  Zrušen help u nevím a odstraněn pes
+    2014-09-09  pozadí dle doporučení JK
 
 -->
 <head>
@@ -600,7 +601,6 @@ $.ui.ready(
 
    <!-- ************  P A N E L   Zkouseni *****************************   -->
     <div class="panel bgzkousej" title="Learning" id="Zkouseni" style="overflow:hidden" selected="selected">
-
               <div id="myhead" class="myhead" >
 
                 <div id="idtext" class="text" >
@@ -651,7 +651,7 @@ $.ui.ready(
                 <a class="button big gray"   
                           onclick="DBAPI.automaticaudio();">Automatic Audio</a>
             </div>
-  <hr/>          
+  <hr/>      
         </div>
         
         <!-- ************  P A N E L   Kviz *****************************   -->
@@ -709,7 +709,7 @@ $.ui.ready(
 		<a class="button big"  id="GJK002" 
            onclick="reply_clickGJK2(this.id)">from http://www.opesol.org</a>
     
-	<a href="http://opesol.org/wwwSPRT/DATA/DB/BIN/index.html" class="button big">GJK fungujici pokus http://opesol.org/wwwSPRT/DATA/DB/BIN/index.html</a>
+	<a href="http://opesol.org/wwwSPRT/DATA/DB/BIN/index2.html" class="button big">GJK fungujici pokus http://opesol.org/wwwSPRT/DATA/DB/BIN/index2.html</a>
 	
 	
         <a class="button big"   
@@ -748,6 +748,16 @@ function reply_clickGJK2(clicked_id)
 	DBAPI.nactiDataReset(path_jarda,'');
     console.log("reply_clickGJK2(), index.html, radka 739, Button clicked id=|" + clicked_id +"|");	
 }
+
+function reply_clickGJK3(clicked_id, url)
+{
+	// lessons from http://www.opesol.org
+    vChangeTextOnButton2(clicked_id);
+	// mozna v budoucnu? setTimeout(DBAPI.synchronizeAudio(clicked_id), 007);
+	DBAPI.nactiDataReset(url,'');
+    console.log("reply_clickGJK3(), index.html, radka 739, Button clicked id=|" + clicked_id +"|, url"+url+"|");	
+}
+
 </script>
 
 

@@ -41,7 +41,7 @@ function vChangeTextOnButtonSynchronous(button_id)
    DBAPI.dbRow.toLang = selectOneValueFromTable10(tableName, sql1, '', 'a1', 'DBAPI.dbRow.iAudiosSyncedSoFar', vypln129);
    DBAPI.dbRow.iAudiosSyncedSoFar++;
    console.log(sql1);
-   if (DBAPI.dbRow.iPocetSlovCelkem < 1) DBAPI.dbRow.iPocetSlovCelkem = 0.1; // deleni nulou
+   if (DBAPI.dbRow.iPocetSlovCelkem < 1) DBAPI.dbRow.iPocetSlovCelkem = 0.123; // deleni nulou
    iPercent = Math.round(100.0 * DBAPI.dbRow.iAudiosSyncedSoFar / DBAPI.dbRow.iPocetSlovCelkem);
    iPercent = iPercent || 0; // if iPercent == NaN then 0
    if (iPercent > 100) iPercent=100;
@@ -363,15 +363,16 @@ function vypln3(slovo) // vratil GJK 2014.07.08.
 
 function vypln129() 
 {
-   console.log("vypln129(), radka 360, iPocetSynchronizedAudioSlovCelkem=|"+DBAPI.dbRow.iPocetSynchronizedAudioSlovCelkem+"|, iPocetSlovCelkem=|"+DBAPI.dbRow.iPocetSlovCelkem+"|");
+   console.log("vypln129(), radka 366, iPocetSynchronizedAudioSlovCelkem=|"+DBAPI.dbRow.iPocetSynchronizedAudioSlovCelkem+"|, iPocetSlovCelkem=|"+DBAPI.dbRow.iPocetSlovCelkem+"|");
    // next
    DBAPI.dbRow.iPocetSynchronizedAudioSlovCelkem++; // omezeni background Audio synchronizeAudio, pocet vsecH slo v DB * 2 (+32 safety?)  :-) 
    if (DBAPI.dbRow.iPocetSynchronizedAudioSlovCelkem < ((DBAPI.dbRow.iPocetSlovCelkem * 2) + 32)){ 
 		//if (DBAPI.dbRow.iPocetSynchronizedAudioSlovCelkem < 32){ 
 		// setTimeout(DBAPI.synchronizeAudio(DBAPI.dbRow.button_id), 123);
-		DBAPI.synchronizeAudio(DBAPI.dbRow.button_id);
-	 console.log("vypln129(), radka 366, setTimeout(DBAPI.synchronizeAudio(DBAPI.dbRow.button_id), 123);");
-   };
+	DBAPI.synchronizeAudio(DBAPI.dbRow.button_id);
+	console.log("vypln129(), radka 373, BYLO A TED OPET JE, DBAPI.synchronizeAudio(DBAPI.dbRow.button_id)");
+   }
+   else  console.log("vypln129(), radka 375, DBAPI.synchronizeAudio(DBAPI.dbRow.button_id);");;
 };
 
 function vypln10(val, variableName) { // vratil GJK 2014.07.08.
@@ -455,7 +456,8 @@ function vMluv129(lang, w2) {
         CDVstrFileName = 'cdvfile://localhost/persistent/path/to/downloads/' + strFileName;
 		str2 = lang;
 		str2 = str2 || '';
-        if (str2.length  > 1) cdvPrehraj129(CDVstrFileName, url1, 1); // language defined 
+        if (str2.length  > 1) 
+			cdvPrehraj129(CDVstrFileName, url1, 1); // language defined 
     }
 	else {
 	    console.log("GJK, radka 457, vMluv129(lang, w2), lang=|" + lang + "|, w2=|" + w2 + "|, path=|" + path + "|");
@@ -570,13 +572,13 @@ function cdvPrehraj(file)
 };
 
 function cdvPrehraj129(file, url1, iLast) {
-    console.log("cdvPrehraj129(), radka 573, fn=|" + file + "|, last=|" + iLast + "|, url=|" + url1 + "|"); // was Alert
+    console.log("cdvPrehraj129(), radka 575, fn=|" + file + "|, last=|" + iLast + "|, url=|" + url1 + "|"); // was Alert
 
     url = file;
     // cache audio
     //
-    console.log("cdvPrehraj129(), radka 578, fn=|" + file + "|, last=" + iLast + "|, url=" + url1 + "|");
-    if (iLast == 1) {
+     if (iLast == 1) {
+		console.log("cdvPrehraj129(), radka 581, fn=|" + file + "|, last=" + iLast + "|, url=" + url1 + "|");
 		cdvDownloadFile129(url1, CDVstrFileName); // + play
     }
    
@@ -585,7 +587,7 @@ function cdvPrehraj129(file, url1, iLast) {
     //my_media.play();
 
     //playFile(file);
-    console.log("after OK cdvPrehraj129(), setVolume(100%), radka 580, fn=|" + file + "|"); // was Alert
+    console.log("cdvPrehraj129(), setVolume(100%), radka 590, fn=|" + file + "|"); // was Alert
 
 };
 
@@ -595,24 +597,36 @@ function cdvDownloadFile129(url, fileURL) {
     //    for example, cdvfile://localhost/persistent/path/to/downloads/
     //                            = adresar v interni pameti:  //path/to/dovnloads/
 
-	var iFileSize=0;
+	var iFileSize=0, fileURL2='';
 	
-	iFileSize = iGjkCheckFileSize77(fs_, fileURL); // aaa
-	console.log("cdvDownloadFile129, radka 601, fileURL=|"+fileURL+"|, iFileSize="+iFileSize+"|");
+	fileURL2 = fileURL.replace("cdvfile://localhost/persistent", "file:///storage/sdcard/path"); // blbe !!! harcoded stuff
+	iFileSize = iGjkCheckFileSize77(fs_, fileURL2); // aaa
+	console.log("cdvDownloadFile129(), radka 604, fileURL2=|"+fileURL2+"|, iFileSize="+iFileSize+"|");
 	
 	
     var fileTransfer = new FileTransfer();
     var uri = encodeURI(url);
     // fileURL = 'cdvfile://localhost/persistent/path/to/downloads/Hlas.mp3';
 
-    if (iFileSize < 372) {
+    if (iFileSize < 0) { //     file:///storage/sdcard/path/to/downloads/DATA/AUDIO/en/en.wav   fileURL=|cdvfile://localhost/persistent/path/to/downloads/DATA/AUDIO/en/retrieved.wav|
     fileTransfer.download(
         uri,
         fileURL,
         function(entry) {
             //console.log("cdvDownloadFile129(), fileTransfer.download(), 451, download complete: |" + entry.toURL() + "|, url=" + url + "|, fileURL="+fileURL+"|");
-            console.log("cdvDownloadFile129(), fileTransfer.download(), radka 612, download complete: |" + entry.toURL() + "|, url=" + url + "|, fileURL=" + fileURL + "|, iFileExist=" + iFileExist + "|");
+            console.log("cdvDownloadFile129(), fileTransfer.download(), radka 616,  download complete: |" + entry.toURL() + "|, url=|" + url + "|, fileURL=" + fileURL + "|, iFileExist=" + iFileExist + "|");
 
+			//window.resolveLocalFileSystemURL("file:///example.txt", onSuccess, onError);
+			if (!window.requestAnimationFrame) {
+    window.requestAnimationFrame = function (callback) { callback(); }; //CORDOVA error https://supportforums.blackberry.com/t5/Web-and-WebWorks-Development/Cordova-3-4-File-plugin-1-0-1-resolveLocalFileSystemURL-for/td-p/2818304
+}
+
+window.resolveLocalFileSystemURL(entry.toURL(), gotFile779, function(e) {
+                // 'e' is an object, {code: 'Class not found'}
+                alert('cdvDownloadFile129(), OK, radka 621, entry.toURL()=|'+entry.toURL()+"|");  //errorHandler(e);
+        });
+
+			//alert("cdvDownloadFile129(), fileTransfer.download(), radka 624, download complete: |" + entry.toURL() + "|, url=" + url + "|, fileURL=" + fileURL + "|, iFileExist=" + iFileExist + "|");
             //cdvPrehraj(fileURL, url, 0); // 0 == uz nestahuj dalsi stejny soubor dvakrat (infinite cycle!!)
 			//update SQL
         },
@@ -807,10 +821,10 @@ path_android_asset_data = './data/';
 path_dramatik = 'http://www.dramatik.cz/';
 path_jarda = 'http://opesol.org/wwwSPRT/';
 
-path_jarda = 'http://opesol.org/wwwSPRT/DATA/sf.php?fn=http://opesol.org/wwwSPRT/DATA/GS/w.666.ja.html&ln=19';
-path_jarda = 'http://opesol.org/wwwSPRT/DATA/sf.php?fn=http://opesol.org/wwwSPRT/DATA/GS/w.666.ja.html&ln=3454'; // 'ln'=1, nacti jednu radku zs souboru 'fn'
-path_jarda = 'http://opesol.org/wwwSPRT/DATA/sf.php?fn=http://opesol.org/wwwSPRT/DATA/GS/w.xy.html&ln=9'; // 'sf' send file, bez 'ln', nacti vsechny radky
-path_jarda = 'http://opesol.org/wwwSPRT/DATA/sf.php?fn=http://opesol.org/wwwSPRT/DATA/GS/w.xy.html&ln=19876'; // 'sf' send file, bez 'ln', nacti vsechny radky , 7891
+path_jarda = 'http://opesol.org/wwwSPRT/DATA/sf.php?fn=http://opesol.org/wwwSPRT/DATA/DB/w.666.ja.html&ln=19';
+path_jarda = 'http://opesol.org/wwwSPRT/DATA/sf.php?fn=http://opesol.org/wwwSPRT/DATA/DB/w.666.ja.html&ln=3454'; // 'ln'=1, nacti jednu radku zs souboru 'fn'
+path_jarda = 'http://opesol.org/wwwSPRT/DATA/sf.php?fn=http://opesol.org/wwwSPRT/DATA/DB/w.xy.html&ln=9'; // 'sf' send file, bez 'ln', nacti vsechny radky
+path_jarda = 'http://opesol.org/wwwSPRT/DATA/sf.php?fn=http://opesol.org/wwwSPRT/DATA/DB/w.xy.html&ln=19876'; // 'sf' send file, bez 'ln', nacti vsechny radky , 7891
 path_extSdCard = 'file:///mnt/extSdCard/DramSprt/';
 path_local = 'files:///local/data/DramSprt/';
 
@@ -871,10 +885,12 @@ var DBAPI = {
             clause = '';
         gjk001OpenDB();
 
-        //openFS(this); // open local sandbox File System on client 
-        openFS2(); // open local sandbox File System on client 
-        //var fs2; 
-        onInitFs2(aGlobalFsRoot); //Uncaught TypeError: undefined is not a function 
+        // openFS(this); // open local sandbox File System on client 
+        // openFS2();  -- vyhodil OH 2014-09-09 file system neni treba otvirat - cordova asi vse zajisti
+        //                a cteni i zapis funguji bez explicitního volani requestfilesystem ???
+        // open local sandbox File System on client 
+        // var fs2; 
+        // onInitFs2(aGlobalFsRoot); //Uncaught TypeError: undefined is not a function 
         //openFS('<button onclick="openFS(this)">Open filesystem</button>');
 
         app.log("DBAPI.otevriDB ");
@@ -1038,7 +1054,7 @@ var DBAPI = {
 
 	synchronizeAudio: function(clicked_id)  //clicked_id
 		{ var sql1='';
-			//console.log("synchronizeAudio(), radka 1031, clicked_id=|" + clicked_id +"|"); 
+			console.log("synchronizeAudio(), radka 1042, clicked_id=|" + clicked_id +"|"); 
 			vChangeTextOnButtonSynchronous(clicked_id); // zobrazeni % pokroku synhronizace audia 
 			checkConnection();
       if(typeof navigator === 'undefined'){
@@ -1894,39 +1910,7 @@ function onInitFs12(fs) { // http://www.html5rocks.com/en/tutorials/file/filesys
     vGJkWriteFile(fs);
 };
 
-function onInitFs2(fs) {
 
-    /*
-        fs.root.getFile('log.txt', {
-            create: true
-        }, function (fileEntry) {
-
-            // Create a FileWriter object for our FileEntry (log.txt).
-            fileEntry.createWriter(function (fileWriter) {
-
-                fileWriter.onwriteend = function (e) {
-                    console.log('Write completed.');
-                    console.log('GJK onInitFs2(fs), 2014.07.15. line= 1437, OK! Write into the client local sandbox FS completed OK.');
-                    vGJkWriteFile(fs);
-                };
-
-                fileWriter.onerror = function (e) {
-                    console.log('Write failed: ' + e.toString());
-                };
-
-                // Create a new Blob and write it to log.txt.
-                var blob = new Blob(['Lorem Ipsum'], {
-                    type: 'text/plain'
-                });
-
-                fileWriter.write(blob);
-
-            }, errorHandler);
-
-        }, errorHandler);
-    */
-    fs_ = fs;
-};
 
 function vGJkWriteFile(fs) {
 
@@ -2103,59 +2087,87 @@ function vGjkReadFile(fs) {
 };
 
 function onDeviceReady778(GJKstrFileName) {
-	console.log("onDeviceReady77(), radka 2106, strFileName=|"+GJKstrFileName+"|");
+	console.log("onDeviceReady778(), radka 2109, strFileName=|"+GJKstrFileName+"|");
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, 
-		gotFS778, 
+		gotFS778(fileSystem, GJKstrFileName)
+		, 
 		function(e) {
                 // 'e' is an object, {code: 'Class not found'}
-                alert('Fail radka 2109');
+                alert('Fail radka 2114'); errorHandler(e);
         }
 	);
 };
 
-function gotFS778(fileSystem) { 
-	var fn='DATA/AUDIO/en'; console.log("gotFS778(), radka 2117, fn=|"+fn+"|");
+function gotFS778(fileSystem, GJKstrFileName) { 
+	var fn='/DATA/AUDIO/en/retrieved.wav'; 
+	fn = GJKstrFileName;
+	console.log("gotFS778(), radka 2122, fn=|"+fn+"|, fn=|"+fn+"|, GJKstrFileName=|"+GJKstrFileName+"|");
 	vGJkReadDir(fileSystem); fs_ = fileSystem;
 	// proc nasledujici radka nefunguje ??
     fileSystem.root.getFile(fn,  {create: false, exclusive: false}, 
 		gotFileEntry778, 
 		function(e) {
                 // 'e' is an object, {code: 'Class not found'}
-                alert('Fail radka 2122, fn=|'+fn+"|");  errorHandler(e);
+                alert('Fail radka 2130, fn=|'+fn+"|");  errorHandler(e);
         }
 	);
 };
 	
-function gotFileEntry778(fileEntry) {
-	console.log("gotFileEntry77(), radka 2128");
-    fileEntry.file(gotFile778, function(e) {
+function gotFileEntry778(fileEntry, GJKstrFileName) {
+	console.log("gotFileEntry778(), radka 2136,  GJKstrFileName=|"+GJKstrFileName+"|");
+    fileEntry.file(gotFile778(file, GJKstrFileName)
+		, 
+		function(e) {
                 // 'e' is an object, {code: 'Class not found'}
-                alert('Fail radka 2131');
-            });
+                alert('Fail radka 2141'); errorHandler(e);
+        }
+	);
 };
 
-function gotFile778(file){
+function gotFile778(file, GJKstrFileName){
         //readDataUrl(file);
         //readAsText(file);
+		console.log("gotFile778(), radka 2148,  GJKstrFileName=|"+GJKstrFileName+"|");
 		  file.getMetadata(function(metadata) {
                 //alert("Metadata size=|" + metadata.size + "|, fn=|" + strFileName + "|");
                 if (metadata.size > 0) {
                     // snad mame dobry local WAV file
-                    console.log("gotFile77(), radka 2123, after snd.play fn=|" + strFileName + "|, size=" + metadata.size + "|");
-                    alert("gotFile77(), radka 2124, after snd.play fn=|" + strFileName + "|, size=" + metadata.size + "|");
+                    console.log("gotFile778(), radka 2123, fn=|" + strFileName + "|, size=" + metadata.size + "|");
+                    alert("gotFile778(), radka 2124, fn=|" + strFileName + "|, size=" + metadata.size + "|");
                 }
                 return metadata.size;
             }, function(e) {
                 // 'e' is an object, {code: 'Class not found'}
-                alert('Fail radka 2142');
+                alert('Fail radka 2159'); errorHandler(e);
             })		
-    };
+};
+
+function gotFile779(file, GJKstrFileName){
+        //readDataUrl(file);
+        //readAsText(file);
+		GJKstrFileName="file:///storage/sdcard/path/to/downloads/DATA/AUDIO/en/en.wav";
+		console.log("gotFile779(), radka 2179,  GJKstrFileName=|"+GJKstrFileName+"|");
+		  file.getMetadata(function(metadata) {
+                //alert("Metadata size=|" + metadata.size + "|, fn=|" + strFileName + "|");
+                if (metadata.size > 0) {
+                    // snad mame dobry local WAV file
+                    console.log("gotFile779(), radka 2184, fn=|" + strFileName + "|, size=|" + metadata.size + "|");
+                    alert("gotFile779(), radka 2185, fn=|" + strFileName + "|, size=|" + metadata.size + "|");
+                }
+                return metadata.size;
+            }, function(e) {
+                // 'e' is an object, {code: 'Class not found'}
+                alert('Fail radka 2190'); errorHandler(e);
+				return -1;
+            })		
+		return -1;
+};
 
 // WEB local storage 2014.07.23.
 // http://diveintohtml5.info/storage.html
 // http://www.w3schools.com/html/html5_webstorage.asp
 function iGjkCheckFileSize77(fs, strFileName) {
-	onDeviceReady778(strFileName);
+	//onDeviceReady778(strFileName);
 	/*
     fs.root.getFile(strFileName, {
         create: false
@@ -2181,7 +2193,44 @@ function iGjkCheckFileSize77(fs, strFileName) {
             }
     });
 	*/
-    return 0;
+	
+	console.log("iGjkCheckFileSize77(), radka 2223, strFileName=|"+strFileName + "|");  	if (!window.requestAnimationFrame) {
+    window.requestAnimationFrame = function (callback) { callback(); }; //CORDOVA error https://supportforums.blackberry.com/t5/Web-and-WebWorks-Development/Cordova-3-4-File-plugin-1-0-1-resolveLocalFileSystemURL-for/td-p/2818304
+} // http://www.raymondcamden.com/2014/2/17/Cordova-File-System--Important-Update
+                  
+	window.resolveLocalFileSystemURL(strFileName
+		,
+		function(file){
+		    console.log("iGjkCheckFileSize77(), radka 2228, fn=|" + strFileName + "|");
+			file.getMetadata(
+				function(metadata) {
+                //alert("Metadata size=|" + metadata.size + "|, fn=|" + strFileName + "|");
+					if (metadata.size > 0) {
+                    // snad mame dobry local WAV file
+                    console.log("iGjkCheckFileSize77(), radka 2234, fn=|" + strFileName + "|, size=|" + metadata.size + "|");
+                    alert("iGjkCheckFileSize77(), radka 2234, fn=|" + strFileName + "|, size=|" + metadata.size + "|");
+					}
+					return metadata.size;
+				}, function(e) {
+                // 'e' is an object, {code: 'Class not found'}
+                alert('Fail radka 2239'); errorHandler(e);
+				return -1;
+            }
+			)	
+			console.log("iGjkCheckFileSize77(), radka 2244, fn=|" + strFileName + "|");			
+			return -1;
+		}		
+		,
+		function(e) {
+                // 'e' is an object, {code: 'Class not found'}
+			console.log("iGjkCheckFileSize77(), radka 2250, fn=|" + strFileName + "|, size=|" + metadata.size + "|");
+            alert('cdvDownloadFile129(), OK, radka 2251, entry.toURL()=|'+entry.toURL()+"|"); errorHandler(e);
+        }		
+	);
+		
+	console.log("iGjkCheckFileSize77(), radka 2255, fn=|" + strFileName + "|");
+                 	
+    return -1;
 };
 
 function iGjkCheckFileSize(fs, strFileName) {

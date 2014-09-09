@@ -1,6 +1,15 @@
 ﻿/* MY.CSS pro DramSprt */
-/* oh:     2013-12-18  */
+/* oh:     2013-12-18 
+   2014-09-09 pozadi JK nakonec presunoto do af.ui.css
+
+*/
 @charset "UTF-8";
+
+.pozadijk {
+  color: #fff;
+  background: url('img/grid_bg.png'),
+              -webkit-radial-gradient(50% 50%, circle, #ccc, #000);
+}
 
 table {
   	width: 95%;
