@@ -283,21 +283,7 @@ $.ui.ready(
        	      ,cas);
     }
 
-	/* DBAPI.dbRow:
-	w1: "w1w1w1",         // anglicky = dotazovane slovo
-	w2: ["w2.1", "w2.2"], // rusky = seznam moznych odpovedi
-	n1: '',               // noun 1
-	n2: ["n2.1", "n2.2"], // verb 2.1, noun 2.2
-	c2: [0.101, 0.102],   // pravdepodobnost 1, pravdepodobnost 2
-	iPocetSlovCelkem: (-3),
-	fromLang: "En2",
-	toLang: "Fr2",
-	nowLang: "En3",
-	iRowId: 0 // cislo radky
-       },
-    index: 0,
-    nazev: "Book 001 lesson 002",
-	*/
+
 	
   function animHelp()  
   // zobrazi waitblock a animuje cekani
@@ -679,15 +665,71 @@ $.ui.ready(
         
         
         <!-- ************  P A N E L   historie *****************************   -->
-        <div class="panel" title="Historie učení" data-nav="nav_0" id="Historie" 
+        <div class="panel" title="Výběr lekce" data-nav="nav_0" id="Historie" 
         data-appbuilder-object="page" data-transition="pop"
         style="">
         
+		<!-- <a class="button" href="#" style="" data-appbuilder-object="button" data-position="static">Hello World</a>   -->
+		<div class="select_element form_element" style="width: 100%; overflow: hidden;" data-appbuilder-object="select" data-position="static">
+			<label for="selectServer">Server</label>
+			<select id="selectServer" onchange="zmenaServeru(this)">
+				<option value="http://opesol.org/wwwSPRT/DATA/DB/BIN/sprt.php" selected="">
+					Opesol
+				</option>
+				<option value="http://opesol.org/wwwSPRT/">
+					Dramatik
+				</option>
+			</select>
+			<label for="selectLekci">Lekce</label>
+			<select id="selectLekci"  onchange="zmenaLekce(this)">
+				<option value="http://opesol.org/wwwSPRT/DATA/DB/BIN/sprt.php" selected="">
+					Lekce 1
+				</option>
+				<option value="http://opesol.org/wwwSPRT/">
+					Lekce 2
+				</option>
+			</select>
+			
+		</div>
                    
         <div id="idhis">Nevyplneno ??</div>
-        
-
         </div>
+        
+  <script type="text/javascript">
+  function zmenaServeru(pol)
+  {
+    // alert("Zmena serveru " + pol.value);
+    
+   $.ui.setTitle(pol.value); 
+   nactiSeznam(pol.value);
+    
+    
+  }
+
+  function nactiSeznam(pol)
+  {
+     alert("Nacti seznam " + pol );
+    
+    var data = loadXMLDoc(pol); 
+    var  lekce = data.getElementsByTagName("LEKCE");
+    alert("pocet lekci : " + lekce.length);
+    var s = '<ul> ';
+    for (i=0;i<lekce.length;i++)
+      { 
+         s = s + '<li>'+lekce[i].textContent+'</li>';
+      }
+    s =    s + '</ul>';
+    alert(' sesnam ' +  s);
+           
+  }
+  
+  function zmenaLekce(pol)
+  {
+    alert("Zmena lekce " + pol.value)
+  }
+  
+  </script>      
+        
         
         <!-- ************  P A N E L   Nastaveni *****************************   -->        
         <div  id="nastav" class="panel" title="Setup" data-nav="nav_0"
@@ -809,16 +851,23 @@ function reply_clickGJK3(clicked_id, url)
     
     </div> <!-- konec Content -->
  
-    <div id="navbar">
-        <a href="#Zkouseni" class="icon home">Learn</a><a href="#Kviz" class="icon picture">Test</a>
-        <a href="#Historie" class="icon info">Stat</a><a href="#nastav" class="icon settings">Setup</a>
-    </div>
     <header id="header_0" data-appbuilder-object="header">
         <a id="backButton" href="#" class="button back" style="visibility: visible; ">Back</a>
         <h1 id="pageTitle" class="">Test</h1> 
     </header>
-    <nav id="nav_0" data-appbuilder-object="nav">
-        <h1>Learn</h1>
+    <div id="navbar">
+        <a href="#Zkouseni" class="icon home">Learn</a><a href="#Kviz" class="icon picture">Test</a>
+        <a href="#Historie" class="icon info">Stat</a><a href="#nastav" class="icon settings">Setup</a>
+    </div>
+
+
+    <nav id="nav_0" >
+       <ul class="list">
+        <li><a href="#Zkouseni" class="icon home">Zkoušení</a></li>
+        <li><a href="#Kviz" class="icon picture">Kvíz</a></li>
+        <li><a href="#Historie" class="icon info">Výběr lekce</a></li>
+        <li><a href="#nastav" class="icon settings">Setup</a></li>
+        </ul>
     </nav>
 </div>
 
