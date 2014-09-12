@@ -34,8 +34,8 @@ var app = {
                             'Device Version: '  + device.version  + '<br />';
          $("#vercor").html(s);
          
-         //*** inicializace fileSystemu
-         initFileSystem();        
+         //***  ??? inicializace fileSystemu ???
+         //*** initFileSystem();        
     },
     log: function(textik){  
       $("#logtxt").append("<div>"+textik+"</div>");  

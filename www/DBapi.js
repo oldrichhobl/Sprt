@@ -278,7 +278,7 @@ function SplitAndSqlInsert(str) {
         if (rowId) { // jen 'define' values
             t1 = 'INSERT INTO GJK0006TABs1(w1,w2,p1,p2,a1,a2,c1,c2,st1,v1,l1) VALUES("' + w1 + '","' + w2 + '","' + p1 + '","' + p2 + '","' + a1 + '","' + a2 + '",' + c1 + ',' + c2 + ',' + st1 + ',"' + v1 + '",' + l1 + ")";
             executeSql(t1);
-            console.log("GJK 2014.06.27. 16:42, nactiDataReset sql=|" + t1 + '|');
+            // console.log("GJK 2014.06.27. 16:42, nactiDataReset sql=|" + t1 + '|');
         }
     }
 }
@@ -414,13 +414,6 @@ function t_h_i_s_setStatus(data, setValName) {
 };
 
 function executeSql(sql) {
-    /*	
-	db.transaction(function (tx) {
-        tx.executeSql(q1, [], function (result) {
-            alert('12SQL failed :|' + q1 + "|, result=" + result);
-        })
-    });
-*/
     Gjkdb.transaction(function(tx) {
         tx.executeSql(sql, [], function(result) {
                 //GjkDebugPrintf(0, 'GJK0006.84001 OLDA USPECH:|' + sql + "|, result" + result)
@@ -744,11 +737,14 @@ function selectOneValueFromTable9(t1, q1, clause, columnName, fvypln9) { // vysl
                         alert("Download finished OK with " + value2 + " words");
                     }
                     fvypln9(GlobalResult2);
+                    DBAPI.nacitam = false;
+                    DBAPI.nazev = 'OK ' + value2 + ' words';
                 },
                 function(tx, error) {
                     txt = "GJK0306.160107z ERROR  after |" + s2 + "|, iMax=" + iMax + "|, error=" + error.message;
                     GjkDebugPrintf(3, txt);
                     alert('GJK0306.160107 Failed sql=|' + s2 + "|, error=" + error.message);
+                    DBAPI.nacitam = false;
                     //return;
                 });
             txt = "GJK0308.90002, sql=|" + s2 + "|";
@@ -829,6 +825,12 @@ path_extSdCard = 'file:///mnt/extSdCard/DramSprt/';
 path_local = 'files:///local/data/DramSprt/';
 
 var DBAPI = {
+    nacitam: false,   // SEMAFOR = probiha nacitani nove lekce
+    nazev: "NIC Book 001 lesson 002",  // nazev lekce
+
+    index: 0,
+
+    
     dbRow: {
         w1: "start", // anglicky = dotazovane slovo
         w2: ["start", "w2.2"], // rusky = seznam moznych odpovedi
@@ -864,9 +866,6 @@ var DBAPI = {
 		selectFromTable129_a1: 0,
 		selectFromTable129_a2: 0		
     },
-
-    index: 0,
-    nazev: "Book 001 lesson 002",
 
     iPocetLekciCelkem: -4,
     iPocetKnihCelkem: -5,
@@ -1052,7 +1051,7 @@ var DBAPI = {
         //return;
     }, // nacti Wave
 
-	synchronizeAudio: function(clicked_id)  //clicked_id
+    synchronizeAudio: function(clicked_id)  //clicked_id
 		{ var sql1='';
 			console.log("synchronizeAudio(), radka 1042, clicked_id=|" + clicked_id +"|"); 
 			vChangeTextOnButtonSynchronous(clicked_id); // zobrazeni % pokroku synhronizace audia 
@@ -1106,8 +1105,9 @@ var DBAPI = {
     nactiDataReset: function(path, filename)
         // nacte nova data ze serveru "path" a resetuje zobrazeni
         {
-            var url = path + filename;
-            //alert("nactiDataReset - " + url);  
+            var url = path;
+            if(filename) url = url + filename;
+            // alert("nactiDataReset -" + url + "-");  
 
             t1 = 'DROP TABLE IF EXISTS ' + tableName; // znic starou tabulku semafor netreba
             executeSql(t1);
@@ -1119,6 +1119,8 @@ var DBAPI = {
                 url: url,
                 success: this.ajaxOnLoad,
                 error: function(data) {
+                    DBAPI.nacitam = false;
+                    DBAPI.nazev = "Ajax 1 error = ";
                     alert("Ajax 1 error = " + data)
                 }
             });
@@ -1126,7 +1128,7 @@ var DBAPI = {
 
     // Response handlers.    
     ajaxOnLoad: function(text) {
-        //alert("ajaxOnLoad : " + text);   
+        // alert("ajaxOnLoad : " + DBAPI.nacitam);         
         var title = 'GJKgetTitle(text)';
 
         strGloblalText = text;

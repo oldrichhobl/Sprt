@@ -20,14 +20,25 @@
 
 <script type="text/javascript" charset="utf-8" src="appframework.js"></script>
 
-<script type="text/javascript" charset="utf-8" src="filesmuj.js"></script>
-<script type="text/javascript" charset="utf-8" src="filesystem.js"></script>
+
 <script type="text/javascript" charset="utf-8" src="audio.js"></script>
 
 <script type="text/javascript" charset="utf-8" src="DBapi.js"></script>
 
 <script type="text/javascript" language="javascript">
 
+// nacteni xml souboru do xmldom objektu - synchronne
+function loadXMLDoc(dname) { 
+    app.log("loadXMLDoc " + dname);  
+      xhttp = new XMLHttpRequest(); 
+      xhttp.open("GET",dname,false); 
+      xhttp.send("");
+      if(((xhttp.status != 200)&&(xhttp.status != 0)) || (! (xhttp.responseXML) ) ) 
+  	    app.log("Err-loadXMLDoc1: " + xhttp.status + "\n naÄŤĂ­tĂˇno: " + dname  + "\n readyState: " + xhttp.readyState  );
+      app.log("loadXMLDoc OK " + dname);
+      return xhttp.responseXML;
+  } 
+  
 
 //initial event handler to detect when intel is ready to roll
     //document.addEventListener("intel.xdk.device.ready", onDeviceReady, false);
@@ -64,7 +75,7 @@
    function onBackKeyDown() { 
     $.ui.popup( {
      title:"Quit now ?",
-     message:"Quit Flash Cards app? <br/>" + pathRootAdr,
+     message:"Quit Flash Cards app? <br/>",
      cancelText:"Continue with app.",
      cancelCallback: function(){console.log("cancelled");},
      doneText:"Quit!",
@@ -185,11 +196,17 @@ $.ui.ready(
     function onLoadpanel(e) {
      app.log("onLoadpanel: "+e.srcElement.id);
      if(e.srcElement.id === 'Zkouseni') 
-        $.ui.setTitle(nazevLekce);
+        $.ui.setTitle(DBAPI.nazev);
      
      if(e.srcElement.id === 'Historie')
      {
-        var i=0;    
+       ukazStatus();
+     }
+     };   
+// ukaz status databaze
+  function ukazStatus()
+  {
+       var i=0;    
         var s = " dbRow : <br/>";
         							
 	s = s + "iRowId = " + DBAPI.dbRow.iRowId + "<br/>";
@@ -202,9 +219,9 @@ $.ui.ready(
 	s = s + "c2[..] = " +  DBAPI.dbRow.c2.toString() + "<br/>";
  
 	$("#idhis").html(s);
-      }
-     };   
-   
+ 
+  }
+  
 // This event 
     function onSwipeup(e) {
      console.log("onSwipe UP: "+e.srcElement);
@@ -673,22 +690,20 @@ $.ui.ready(
 		<div class="select_element form_element" style="width: 100%; overflow: hidden;" data-appbuilder-object="select" data-position="static">
 			<label for="selectServer">Server</label>
 			<select id="selectServer" onchange="zmenaServeru(this)">
-				<option value="http://opesol.org/wwwSPRT/DATA/DB/BIN/sprt.php" selected="">
+				<option value="" selected="">
+					Zvolte server !
+				</option>
+				<option value="http://opesol.org/wwwSPRT/DATA/DB/BIN/sprt.php">
 					Opesol
 				</option>
 				<option value="http://opesol.org/wwwSPRT/">
 					Dramatik
 				</option>
 			</select>
-			<label for="selectLekci">Lekce</label>
-			<select id="selectLekci"  onchange="zmenaLekce(this)">
-				<option value="http://opesol.org/wwwSPRT/DATA/DB/BIN/sprt.php" selected="">
-					Lekce 1
-				</option>
-				<option value="http://opesol.org/wwwSPRT/">
-					Lekce 2
-				</option>
-			</select>
+
+			<div id="seznamLekci">
+			  
+			</div>
 			
 		</div>
                    
@@ -700,7 +715,7 @@ $.ui.ready(
   {
     // alert("Zmena serveru " + pol.value);
     
-   $.ui.setTitle(pol.value); 
+    
    nactiSeznam(pol.value);
     
     
@@ -708,24 +723,93 @@ $.ui.ready(
 
   function nactiSeznam(pol)
   {
-     alert("Nacti seznam " + pol );
+    // alert("Nacti seznam " + pol );
     
     var data = loadXMLDoc(pol); 
+    if(data === null) 
+    {
+    $.ui.popup( {
+     title:"Bacha !",
+     message:"Server neposkytuje žádné lekce: <br/>" + pol + "<br/>",
+     cancelText:"Konec",
+     cancelCallback: function(){console.log("cancelled");},
+     doneText:"OK!",
+     doneCallback: function(){
+        console.log("Done for!");
+                             },
+     cancelOnly:false
+    });
+     return;
+    }
     var  lekce = data.getElementsByTagName("LEKCE");
-    alert("pocet lekci : " + lekce.length);
-    var s = '<ul> ';
+    if(lekce === null) 
+    {
+    $.ui.popup( {
+     title:"Bacha !",
+     message:"Server neposkytuje žádné lekce: <br/>" + pol + "<br/>",
+     cancelText:"Konec",
+     cancelCallback: function(){console.log("cancelled");},
+     doneText:"OK!",
+     doneCallback: function(){console.log("Done for!");},
+     cancelOnly:false
+    });
+     return;
+    }
+    // alert("pocet lekci : " + lekce.length);
+    var s = '<ul  class="list"> ';
     for (i=0;i<lekce.length;i++)
       { 
-         s = s + '<li>'+lekce[i].textContent+'</li>';
+         var e = lekce[i];
+         var onclick = 'onclick="javascript:zmenaLekce(' + "'" + 
+             e.getElementsByTagName("fname")[0].textContent  + "');" +'"';
+         
+         s = s + '<li ' + onclick + '>'+ e.getElementsByTagName("name")[0].textContent+
+         ' (' + e.getElementsByTagName("pocet")[0].textContent+ ')'+
+         '</li>';
       }
     s =    s + '</ul>';
-    alert(' sesnam ' +  s);
+    // alert(' sesnam ' +  s);
+    $.ui.setTitle(pol.value);
+    $("#seznamLekci").html(s);
+    
            
   }
   
-  function zmenaLekce(pol)
+  
+  
+  function zmenaLekce(url)
   {
-    alert("Zmena lekce " + pol.value)
+    // alert("Zmena lekce " + url);
+    if (DBAPI.nacitam)
+    {
+     $.ui.popup( {
+     title:"Nelze !",
+     message:"Nacitam lekci: <br/>" + DBAPI.nazev + "<br/>",
+     cancelText:"Konec",
+     cancelCallback: function(){console.log("cancelled");},
+     cancelOnly:true
+    });
+    return;
+    }
+    else
+    {
+    $.ui.popup( {
+     title:"Opravdu nacist ",
+     message:"lekci: <br/>" + url + "<br/>",
+     cancelText:"Ne",
+     cancelCallback: function(){console.log("cancelled");},
+     doneText:"OK!",
+     doneCallback: function(){
+        console.log("Done for!");
+        $.ui.setTitle("NACITAM " + url);
+        // spustime nove nacitani
+        DBAPI.nacitam = true;
+        DBAPI.nazev = "NACITAM " + url
+        DBAPI.nactiDataReset(url,'');
+        },
+     cancelOnly:false
+    });
+    }
   }
   
   </script>      
@@ -748,7 +832,7 @@ $.ui.ready(
         <a class="button  big"   
            onclick="javascript:DBAPI.nactiDataReset(path_dramatik,'DBdata.txt');">from http://www.dramatik.cz</a>
         
-		<a class="button big"  id="GJK002" 
+	<a class="button big"  id="GJK002" 
            onclick="reply_clickGJK2(this.id)">from http://www.opesol.org</a>
     
 	<a href="http://opesol.org/wwwSPRT/DATA/DB/BIN/index2.html" class="button big">GJK fungujici pokus http://opesol.org/wwwSPRT/DATA/DB/BIN/index2.html</a>
@@ -856,8 +940,10 @@ function reply_clickGJK3(clicked_id, url)
         <h1 id="pageTitle" class="">Test</h1> 
     </header>
     <div id="navbar">
-        <a href="#Zkouseni" class="icon home">Learn</a><a href="#Kviz" class="icon picture">Test</a>
-        <a href="#Historie" class="icon info">Stat</a><a href="#nastav" class="icon settings">Setup</a>
+        <a href="#Zkouseni" class="icon home">Learn</a>
+        <a href="#Kviz" class="icon picture">Test</a>
+        <a href="#Historie" class="icon info">Stat</a>
+        <a href="#nastav" class="icon settings">Setup</a>
     </div>
 
 

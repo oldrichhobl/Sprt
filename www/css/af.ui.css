@@ -1558,8 +1558,8 @@ body {
 #afui.android {
 	font:14px  'Roboto',sans-serif;
  color: #fff;
-  background: url('img/grid_bg.png'),
-              -webkit-radial-gradient(50% 50%, circle, #ccc, #000);
+  background: url('grid_bg.png'),
+              -webkit-radial-gradient(50% 50%, circle, #c00, #000);
 
     border-color:#fff;
 }
