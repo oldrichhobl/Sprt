@@ -26,7 +26,7 @@ var app = {
         var ele = document.getElementById(id);
         $("#messagestxt").html('Received Event 1 ');
         console.log('Received Event: ' + id + " device.cordova : " + device.cordova);
-        var s = 'Device Name: '     + device.name     + '<br />' +
+        var s = 
                             'Device Cordova: '  + device.cordova  + '<br />' +
                             'Device Platform: ' + device.platform + '<br />' +
                             'Device UUID: '     + device.uuid     + '<br />' +
