@@ -4,6 +4,7 @@ plugins/
 res/
 hooks/
 datasrc/
+GRAFIKA/OrigFoto
 #
 # zbytky od editoru JEDIT
 *.*~
