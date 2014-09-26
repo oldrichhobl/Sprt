@@ -26,9 +26,12 @@ var iGlobalCurrentZvuk = 0,
 var poleGlobalVsechnyZvuky = [],
     MinulaHodnotaPoleGlobalVsechnyZvuky = '',
     iMaxUzSkoroMluvilo = 666987,
-    iMaxUrciteUzMluvilo = 33;
-
-poleGlobalVsechnyZvuky[0] = "";
+    iMaxUrciteUzMluvilo = 333,
+	iGlobalFileSize=0;
+	poleGlobalVsechnyZvuky[0] = "",
+	poleDvaUzMluvilo1 = [],
+	poleDvaUzMluvilo2 = [],
+	iGlobal1392 = (-1392);
 
 /*
 http://www.rangde.org/static/bell-ring-01.mp3";
@@ -72,6 +75,10 @@ function vPridejZvuk(str) {
 }
 
 function vHrajMedia() {
+	var iSize=0;
+	
+	poleGlobalVsechnyZvuky[iGlobalCurrentZvuk] = poleGlobalVsechnyZvuky[iGlobalCurrentZvuk]  || '';
+	if ( poleGlobalVsechnyZvuky[iGlobalCurrentZvuk].length < 1) {iGlobalCurrentZvuk++; return;} // if zvuk undefined do nothing
     if (iGlobalCurrentZvuk > iGlobalMaxZvuk) { // uz jsem vsechno prehrali, zacneme znovu
         iGlobalCurrentZvuk = 0;
         iGlobalMaxZvuk = -1;
@@ -81,10 +88,12 @@ function vHrajMedia() {
 
     if (poleGlobalVsechnyZvuky[iGlobalCurrentZvuk].length > 0 && !(MinulaHodnotaPoleGlobalVsechnyZvuky == poleGlobalVsechnyZvuky[iGlobalCurrentZvuk])) { // nehraj prazdne zvuky ani minuly zvuk
         iSize = iGjkCheckFileSize77(fs_, poleGlobalVsechnyZvuky[iGlobalCurrentZvuk]);
-        vMyConsoleLog("vHrajMedia(), radka 73, iSize=|" + iSize + "|, iGlobalCurrentZvuk=|" + iGlobalCurrentZvuk + "|, zvuk=|" + poleGlobalVsechnyZvuky[iGlobalCurrentZvuk] + "|, bGlobalTedPraveHraji=|" + bGlobalTedPraveHraji + "|, iGlobalMaxZvuk=|" + iGlobalMaxZvuk + "|");
-
-        var iSize = (-4),
-            my_media = new Media(poleGlobalVsechnyZvuky[iGlobalCurrentZvuk], onSuccess298, onError298);
+        vMyConsoleLog("vHrajMedia(), radka 000088, iSize=|" + iSize + "|, iGlobalCurrentZvuk=|" + iGlobalCurrentZvuk + "|, zvuk=|" 
+		+ poleGlobalVsechnyZvuky[iGlobalCurrentZvuk] 
+		+ "|, bGlobalTedPraveHraji=|" + bGlobalTedPraveHraji + "|, iGlobalMaxZvuk=|" + iGlobalMaxZvuk + "|", 2000);
+		
+		if (iSize > 0 || true) {
+        var my_media = new Media(poleGlobalVsechnyZvuky[iGlobalCurrentZvuk], onSuccess298, onError298);
         // Play audio
 
         MinulaHodnotaPoleGlobalVsechnyZvuky = poleGlobalVsechnyZvuky[iGlobalCurrentZvuk];
@@ -93,16 +102,24 @@ function vHrajMedia() {
 
         my_media.setVolume('1.0');
         my_media.play();
-        iSize = iGjkCheckFileSize77(fs_, poleGlobalVsechnyZvuky[iGlobalCurrentZvuk]);
+        //iSize = iGjkCheckFileSize77(fs_, poleGlobalVsechnyZvuky[iGlobalCurrentZvuk]);
         iGlobalCurrentZvuk++; // posun na dalsi zvuk 
         DBAPI.dbRow.iUrciteUzMluvilo++;
 
         for (m = 0; m < (iGlobalMaxZvuk + 1); m++) { // debug GJK tisk co jeste mame ve front na hrani
-            vMyConsoleLog("1 onSuccess298(), radka 83, m=|" + m + "|, poleGlobalVsechnyZvuky[]=|" + poleGlobalVsechnyZvuky[m] + "|, iGlobalCurrentZvuk=|" + iGlobalCurrentZvuk + "|, bGlobalTedPraveHraji=|" + bGlobalTedPraveHraji + "|");
+            vMyConsoleLog("1 onSuccess298(), radka 000107, m=|" + m + "|, poleGlobalVsechnyZvuky[]=|" 
+			+ poleGlobalVsechnyZvuky[m] + "|, iGlobalCurrentZvuk=|" + iGlobalCurrentZvuk + "|, bGlobalTedPraveHraji=|" + bGlobalTedPraveHraji + "|", 7000);
         }
-        vMyConsoleLog("alert 1, radka 00092, poleGlobalVsechnyZvuky[" + iGlobalCurrentZvuk + "]=|" + poleGlobalVsechnyZvuky[iGlobalCurrentZvuk] + "|, iSize=|" + iSize + "|");
-        //alert("1 , radka 00092, vHrajMedia(), hrajeme_ted?==poleGlobalVsechnyZvuky["+iGlobalCurrentZvuk+"]=|"+poleGlobalVsechnyZvuky[iGlobalCurrentZvuk]+"|, iSize=|"+iSize+"|");
+		poleGlobalVsechnyZvuky[iGlobalCurrentZvuk] = poleGlobalVsechnyZvuky[iGlobalCurrentZvuk]  || '';
+		if ( poleGlobalVsechnyZvuky[iGlobalCurrentZvuk].length < 1) {iGlobalCurrentZvuk++; return;} // if zvuk undefined do nothing
 
+        vMyConsoleLog("alert 1, radka 000113, poleGlobalVsechnyZvuky[" + iGlobalCurrentZvuk 
+		+ "]=|" + poleGlobalVsechnyZvuky[iGlobalCurrentZvuk] + "|, iSize=|" + iSize + "|", 2000);
+		poleGlobalVsechnyZvuky[iGlobalCurrentZvuk] = poleGlobalVsechnyZvuky[iGlobalCurrentZvuk]  || '';
+		if ( poleGlobalVsechnyZvuky[iGlobalCurrentZvuk].length < 1) {iGlobalCurrentZvuk++; return;} // if zvuk undefined do nothing
+        //alert("1 , radka 000117, vHrajMedia(), hrajeme_ted?==poleGlobalVsechnyZvuky["+iGlobalCurrentZvuk+"]=|"+poleGlobalVsechnyZvuky[iGlobalCurrentZvuk]+"|, iSize=|"+iSize+"|");
+		}
+		
         /*
 	//document.getElementById('audio').addEventListener('ended', function(){
 	my_media.addEventListener('ended', function(){
@@ -121,16 +138,21 @@ function vHrajMedia() {
 function onSuccess298() // sem vlezeme teprve az predchozi hrani SKONCILO !!! i to, ktere nas vola?!
     {
         var iSize = (-6);
-        iSize = iGjkCheckFileSize77(fs_, this.src);
-        vMyConsoleLog("onSuccess298(), radka 115, iSize=|" + iSize + "|, this.src=|" + this.src + "|, iGlobalCurrentZvuk=|" + iGlobalCurrentZvuk + "|, bGlobalTedPraveHraji=|" + bGlobalTedPraveHraji + "|");
+        //iSize = iGjkCheckFileSize77(fs_, this.src);
+        vMyConsoleLog("onSuccess298(), radka 000139, iSize=|" + iSize + "|, this.src=|" + this.src 
+		+ "|, iGlobalCurrentZvuk=|" + iGlobalCurrentZvuk + "|, bGlobalTedPraveHraji=|" + bGlobalTedPraveHraji + "|");
         // mediaSuccess: (Optional) The callback that is invoked after a Media object has completed the current play/record or stop action. (Function)
         // http://docs.phonegap.com/en/2.1.0/cordova_media_media.md.html
         // like addEventListener ??
 
         //this.setVolume('1.0'); //this.play();
-        vMyConsoleLog("alert 8, onSuccess298, radka 121, tohle ted dohralo->this.src=|" + this.src + "|, tohle ma ted zacit hrat->poleGlobalVsechnyZvuky[" + iGlobalCurrentZvuk + "]=|" + poleGlobalVsechnyZvuky[iGlobalCurrentZvuk] + "|");
-        //alert("alert 8, onSuccess298, radka 121, tohle ted dohralo->this.src=|"+this.src+"|, tohle ma ted zacit hrat->poleGlobalVsechnyZvuky["+iGlobalCurrentZvuk+"]=|"+poleGlobalVsechnyZvuky[iGlobalCurrentZvuk]+"|");
-
+        vMyConsoleLog("alert 8, onSuccess298, radka 156, tohle ted dohralo->this.src=|" + this.src 
+		+ "|, tohle ma ted zacit hrat->poleGlobalVsechnyZvuky[" + iGlobalCurrentZvuk + "]=|" + poleGlobalVsechnyZvuky[iGlobalCurrentZvuk] + "|");
+        /*
+		lert("alert 8, onSuccess298, radka 145, tohle ted dohralo->this.src=|"+this.src+"|, tohle ma ted zacit hrat->poleGlobalVsechnyZvuky["
+		+iGlobalCurrentZvuk+"]=|"+poleGlobalVsechnyZvuky[iGlobalCurrentZvuk]+"|");
+		*/
+		MinulaHodnotaPoleGlobalVsechnyZvuky = this.src;
         this.release(); // release predchozi zvuk a Media
 
         if (iGlobalCurrentZvuk > iGlobalMaxZvuk) { // uz jsem vsechno prehrali, zacneme znovu
@@ -138,16 +160,16 @@ function onSuccess298() // sem vlezeme teprve az predchozi hrani SKONCILO !!! i 
             iGlobalMaxZvuk = -1;
             bGlobalTedPraveHraji = false;
         } else {
+		poleGlobalVsechnyZvuky[iGlobalCurrentZvuk] = poleGlobalVsechnyZvuky[iGlobalCurrentZvuk] || '';
             if (poleGlobalVsechnyZvuky[iGlobalCurrentZvuk].length > 0 && !(MinulaHodnotaPoleGlobalVsechnyZvuky == poleGlobalVsechnyZvuky[iGlobalCurrentZvuk])) { // nehraj prazdne zvuky ani minuly zvuk
                 var m, my_media = new Media(poleGlobalVsechnyZvuky[iGlobalCurrentZvuk], onSuccess298, onError298);
-                // Play audio
-                MinulaHodnotaPoleGlobalVsechnyZvuky = poleGlobalVsechnyZvuky[iGlobalCurrentZvuk];
+                // Play audio 
                 poleGlobalVsechnyZvuky[iGlobalCurrentZvuk] = ""; // vynuluj current zvuk, ktery snad hrajeme ted 
                 bGlobalTedPraveHraji = true;
 
                 my_media.setVolume('1.0');
                 my_media.play();
-                iSize = iGjkCheckFileSize77(fs_, poleGlobalVsechnyZvuky[iGlobalCurrentZvuk]);
+                //iSize = iGjkCheckFileSize77(fs_, poleGlobalVsechnyZvuky[iGlobalCurrentZvuk]);
                 iGlobalCurrentZvuk++; // posun na dalsi zvuk
                 bGlobalTedPraveHraji = true;
                 DBAPI.dbRow.iUrciteUzMluvilo++;
@@ -160,10 +182,10 @@ function onSuccess298() // sem vlezeme teprve az predchozi hrani SKONCILO !!! i 
         }, false);	
 	*/
                 for (m = 0; m < (iGlobalMaxZvuk + 1); m++) {
-                    vMyConsoleLog("2 onSuccess298(), radka 135, m=|" + m + "|, poleGlobalVsechnyZvuky[]=|" + poleGlobalVsechnyZvuky[m] + "|, iGlobalCurrentZvuk=|" + iGlobalCurrentZvuk + "|, bGlobalTedPraveHraji=|" + bGlobalTedPraveHraji + "|");
+                    vMyConsoleLog("2 onSuccess298(), radka 135, m=|" + m + "|, poleGlobalVsechnyZvuky[]=|" + poleGlobalVsechnyZvuky[m] + "|, iGlobalCurrentZvuk=|" + iGlobalCurrentZvuk + "|, bGlobalTedPraveHraji=|" + bGlobalTedPraveHraji + "|", 2000);
                 }
-                vMyConsoleLog("alert 2, onSuccess298, radka 157, iSize=|" + iSize + "|, poleGlobalVsechnyZvuky[" + iGlobalCurrentZvuk + "]=|" + poleGlobalVsechnyZvuky[iGlobalCurrentZvuk] + "|");
-                // alert("2 onSuccess298(), radka 157,  iSize=|"+iSize+"|, poleGlobalVsechnyZvuky["+iGlobalCurrentZvuk+"]=|"+poleGlobalVsechnyZvuky[iGlobalCurrentZvuk]+"|");
+                vMyConsoleLog("alert 2, onSuccess298, radka 000185, iSize=|" + iSize + "|, poleGlobalVsechnyZvuky[" + iGlobalCurrentZvuk + "]=|" + poleGlobalVsechnyZvuky[iGlobalCurrentZvuk] + "|", 2000);
+                //alert("2 onSuccess298(), radka 000185,  iSize=|"+iSize+"|, poleGlobalVsechnyZvuky["+iGlobalCurrentZvuk+"]=|"+poleGlobalVsechnyZvuky[iGlobalCurrentZvuk]+"|");
             } else {
                 onError298();
             }
@@ -176,7 +198,8 @@ function onError298() // popostrc zvuky+1
             pole2 = [],
             mylang1 = '',
             myword1 = '';   this.src =  this.src || ''; if (this.src.length < 1) {iGlobalCurrentZvuk++; bGlobalTedPraveHraji = false; return; } // if "undefined" this.src, do nothing 
-        vMyConsoleLog("onError298(), radka 179, this.src=|" + this.src + "|, iGlobalCurrentZvuk=|" + iGlobalCurrentZvuk + "|, poleGlobalVsechnyZvuky[" + iGlobalCurrentZvuk + "]=|" + poleGlobalVsechnyZvuky[iGlobalCurrentZvuk] + "|");
+        vMyConsoleLog("onError298(), radka 179, this.src=|" + this.src + "|, iGlobalCurrentZvuk=|" 
+		+ iGlobalCurrentZvuk + "|, poleGlobalVsechnyZvuky[" + iGlobalCurrentZvuk + "]=|" + poleGlobalVsechnyZvuky[iGlobalCurrentZvuk] + "|", 9000);
         /* alert("3 onError298(), radka 167, this.src=|"+this.src
 	+"|, iGlobalCurrentZvuk=|"+iGlobalCurrentZvuk+"|, poleGlobalVsechnyZvuky["
 	+iGlobalCurrentZvuk+"]=|"+poleGlobalVsechnyZvuky[iGlobalCurrentZvuk]+"|"); */
@@ -187,7 +210,7 @@ function onError298() // popostrc zvuky+1
         mylang1 = pole2[pole2.length - 2];
         myword1 = pole2[pole2.length - 1];
         // stahni zvuk this.src ze serveru 		vMluv129(lang, word); // pokud mame rozumne? Language a Word, zkus zda je treba dowload Zvuk ze serveru		
-        vMyConsoleLog("onError298(), radka 00190, this.src=|" + this.src + "|, mylang1=|" + mylang1 + "|, myword1=|" + myword1 + "|");
+        vMyConsoleLog("onError298(), radka 00190, this.src=|" + this.src + "|, mylang1=|" + mylang1 + "|, myword1=|" + myword1 + "|", 9000);
         vMluv129(mylang1, myword1); // stahne ze serveru
         this.release();
         iGlobalCurrentZvuk++;
@@ -424,26 +447,26 @@ function gjk001OpenDB() {
 function SplitAndSqlInsert(str) {
     var resultArray1 = [];
 
-    resultArray1 = str.split(/\r?\n/);
+    resultArray1 = str.split(/\r?\n/); vMyConsoleLog("SplitAndSqlInsert(), radka 450", 0000); // vsechen input rozdel na jednotlive radky
     for (var p in resultArray1) {
         var rowId, w1, w2, p1, p2, a1, a2, c1, c2, st1, t1, t2;
 
-        // for every line do  |0|and|und|prÃƒÆ’Ã¢â‚¬|Ã‚Â'ÃƒÆ’Ã¢â‚¬Â¹Ãƒâ€šÃ‚Âlk|http://1.mp3|http://2.mp4|3|0|7|7|conjunction|0.7316156|
+        vMyConsoleLog("SplitAndSqlInsert(), radka 454, resultArray1[p]="+resultArray1[p]+"|, p=|"+p+"|", 0000); // for every line do  |0|and|und|prÃƒÆ’Ã¢â‚¬|Ã‚Â'ÃƒÆ’Ã¢â‚¬Â¹Ãƒâ€šÃ‚Âlk|http://1.mp3|http://2.mp4|3|0|7|7|conjunction|0.7316156|
         //                     1  2   3   4 == p1            5 == p2              6==a1        7==a2     8 9 0 1  12==v1      13==l1
-        resultArray2 = resultArray1[p].split('|');
-        rowId = resultArray2[1];
-        w1 = resultArray2[2];
-        w2 = resultArray2[3];
-        p1 = resultArray2[4];
-        p2 = resultArray2[5];
-        a1 = resultArray2[6];
-        a2 = resultArray2[7];
-        c1 = resultArray2[8]; // count1, count good
-        c2 = resultArray2[9]; // count2, count bad
-        st1 = resultArray2[10]; // row type = 0..100 ordinary word
-        t1 = resultArray2[11]; // last time good
-        //t2 = resultArray2[12];  // last time bad
-        v1 = resultArray2[12]; // word type
+        resultArray2 = resultArray1[p].split('|'); // split jeden radek na polozky
+        rowId = mysql_real_escape_string(resultArray2[1]);
+        w1 = mysql_real_escape_string(resultArray2[2]); 
+        w2 = mysql_real_escape_string(resultArray2[3]);
+        p1 = mysql_real_escape_string(resultArray2[4]);
+        p2 = mysql_real_escape_string(resultArray2[5]);
+        a1 = mysql_real_escape_string(resultArray2[6]);
+        a2 = mysql_real_escape_string(resultArray2[7]);
+        c1 = mysql_real_escape_string(resultArray2[8]); // count1, count good
+        c2 = mysql_real_escape_string(resultArray2[9]); // count2, count bad
+        st1 = mysql_real_escape_string(resultArray2[10]); // row type = 0..100 ordinary word
+        t1 = mysql_real_escape_string(resultArray2[11]); // last time good
+        //t2 = mysql_real_escape_string(resultArray2[12]);  // last time bad
+        v1 = mysql_real_escape_string(resultArray2[12]); // word type
 
         if (v1) {
             v1 = v1;
@@ -451,7 +474,7 @@ function SplitAndSqlInsert(str) {
             v1 = '';
         };
 
-        l1 = resultArray2[13]; // word likelyhood 0.0 .. 0.9999, mam chybu na serveru?
+        l1 = mysql_real_escape_string(resultArray2[13]); // word likelyhood 0.0 .. 0.9999, mam chybu na serveru?
 
         if (rowId) { // jen 'define' values
             t1 = 'INSERT INTO GJK0006TABs1(w1,w2,p1,p2,a1,a2,c1,c2,st1,v1,l1) VALUES("' + w1 + '","' + w2 + '","' + p1 + '","' + p2 + '","' + a1 + '","' + a2 + '",' + c1 + ',' + c2 + ',' + st1 + ',"' + v1 + '",' + l1 + ")";
@@ -660,7 +683,7 @@ function vMluv7129(lang, w2) {
 
         path = path + lang + '/';
         pathDir = path;
-        vMyConsoleLog("vMluv7129(lang, w2), radka 667, lang=|" + lang + "|, w2=|" + w2 + "|, path=|" + path + "|");
+        vMyConsoleLog("vMluv7129(lang, w2), radka 686, lang=|" + lang + "|, w2=|" + w2 + "|, path=|" + path + "|", 8000);
         //vGJkCreateDirTree(fs_.root, path.split('/')); // check if exist !!!! fs.root is a DirectoryEntry.
 
         string = "http://opesol.org/wwwSPRT/DATA/PosliAudio.php?tl=" + lang + "&wo=" + w2 + "&so=1";
@@ -673,7 +696,7 @@ function vMluv7129(lang, w2) {
         if (str2.length > 1)
             cdvPrehraj129(CDVstrFileName, url1, 1); // language defined 
     } else {
-        vMyConsoleLog("vMluv7129(lang, w2),, radka 681, lang=|" + lang + "|, w2=|" + w2 + "|, path=|" + path + "|");
+        vMyConsoleLog("vMluv7129(lang, w2),, radka 699, lang=|" + lang + "|, w2=|" + w2 + "|, path=|" + path + "|", 8000);
     }
 };
 
@@ -794,13 +817,13 @@ function cdvPrehraj(file) {
 };
 
 function cdvPrehraj129(file, url1, iLast) {
-    vMyConsoleLog("cdvPrehraj129(), radka 575, fn=|" + file + "|, last=|" + iLast + "|, url=|" + url1 + "|"); // was Alert
+    vMyConsoleLog("cdvPrehraj129(), radka 820, fn=|" + file + "|, last=|" + iLast + "|, url=|" + url1 + "|", 8000); // was Alert
 
     url = file;
     // cache audio
     //
     if (iLast == 1) {
-        vMyConsoleLog("cdvPrehraj129(), radka 581, fn=|" + file + "|, last=" + iLast + "|, url=" + url1 + "|");
+        vMyConsoleLog("cdvPrehraj129(), radka 826, fn=|" + file + "|, last=" + iLast + "|, url=" + url1 + "|", 8000);
         cdvDownloadFile129(url1, CDVstrFileName); // + play
     }
 
@@ -809,7 +832,7 @@ function cdvPrehraj129(file, url1, iLast) {
     //my_media.play();
 
     //playFile(file);
-    vMyConsoleLog("cdvPrehraj129(), setVolume(100%), radka 590, fn=|" + file + "|"); // was Alert
+    vMyConsoleLog("cdvPrehraj129(), radka 835, fn=|" + file + "|", 8000); // was Alert
 
 };
 
@@ -823,16 +846,19 @@ function cdvDownloadFile129(url, fileURL1) {
 
     fileURL2 = fileURL1; //fileURL2 = fileURL1.replace("cdvfile://localhost/persistent", "file:///storage/sdcard/path"); // blbe !!! harcoded stuff
     iFileSize = iGjkCheckFileSize77(fs_, fileURL2); // aaa
-    vMyConsoleLog("cdvDownloadFile129(), radka 786, fileURL2=|" + fileURL2 + "|, iFileSize=" + iFileSize + "|");
+    vMyConsoleLog("cdvDownloadFile129(), radka 849, fileURL2=|" + fileURL2 + "|, iFileSize=" + iFileSize + "|", 8000);
 
-
+	if(true) {
+		 setTimeout(vGJKfileTransfer(url, fileURL2), 001); // pouzijeme Oldovo vylepseni
+	}
+	else {
     var fileTransfer = new FileTransfer(); // Saved file: cdvfile://localhost/persistent/path/to/downloads/DATA/AUDIO/de/unit.wav
     var uri = encodeURI(url);
     // fileURL1 = 'cdvfile://localhost/persistent/path/to/downloads/Hlas.mp3';
-    vMyConsoleLog("cdvDownloadFile129(), radka 792, fileURL2=|" + fileURL2 + "|, iFileSize=" + iFileSize + "|, url=" + url + "|"); //     file:///storage/sdcard/path/to/downloads/DATA/AUDIO/en/en.wav   fileURL2=|cdvfile://localhost/persistent/path/to/downloads/DATA/AUDIO/en/retrieved.wav|
+    vMyConsoleLog("cdvDownloadFile129(), radka 832, fileURL2=|" + fileURL2 + "|, iFileSize=" + iFileSize + "|, url=" + url + "|"); //     file:///storage/sdcard/path/to/downloads/DATA/AUDIO/en/en.wav   fileURL2=|cdvfile://localhost/persistent/path/to/downloads/DATA/AUDIO/en/retrieved.wav|
 
     if (iFileSize < 1 || true) {
-        vMyConsoleLog("cdvDownloadFile129(), radka 794, fileURL2=|" + fileURL2 + "|, iFileSize=" + iFileSize + "|"); //     file:///storage/sdcard/path/to/downloads/DATA/AUDIO/en/en.wav   fileURL2=|cdvfile://localhost/persistent/path/to/downloads/DATA/AUDIO/en/retrieved.wav|
+        vMyConsoleLog("cdvDownloadFile129(), radka 835, fileURL2=|" + fileURL2 + "|, iFileSize=" + iFileSize + "|"); //     file:///storage/sdcard/path/to/downloads/DATA/AUDIO/en/en.wav   fileURL2=|cdvfile://localhost/persistent/path/to/downloads/DATA/AUDIO/en/retrieved.wav|
         fileTransfer.download(
             uri,
             fileURL2,
@@ -841,8 +867,17 @@ function cdvDownloadFile129(url, fileURL1) {
                 vMyConsoleLog("cdvDownloadFile129(), fileTransfer.download(), radka 841,  download complete OK: |" 
 				+ entry.toURL() + "|, url=|" + url + "|, fileURL2=" + fileURL2 + "|, iFileExist=" + iFileExist + "|", 9000);
                 iFileSize = iGjkCheckFileSize77(fs_, fileURL2); // aaa
-                if (iFileSize < 1) vMyConsoleLog("cdvDownloadFile129(), radka 842, ERROR, download complete BUT fileURL2=|" + fileURL2 + "|, iFileSize=" + iFileSize + "|", 2000); else vMyConsoleLog("cdvDownloadFile129(), radka 842, OK, download complete AND fileURL2=|" + fileURL2 + "|, iFileSize=" + iFileSize + "|", 2000);
-                /* 
+                if (iFileSize < 1) {
+					vMyConsoleLog("cdvDownloadFile129(), radka 845, ERROR, download complete BUT fileURL2=|" 
+					+ fileURL2 + "|, iFileSize=" + iFileSize + "|, iGlobalFileSize=|"+iGlobalFileSize+"|", 2000);
+				} else {
+					vMyConsoleLog("cdvDownloadFile129(), radka 847, OK, download complete AND fileURL2=|" 
+					+ fileURL2 + "|, iFileSize=" + iFileSize + "|,iGlobalFileSize=|"+iGlobalFileSize+"|", 2000); 
+					// put iSize into DB a1 or a2
+				}
+			
+				/* 
+				/* 
 				zjistit velikost lokalniho souboru se mi zatim nijak nedari GJK 2014.09.19);
 				
 			//window.resolveLocalFileSystemURL("file:///example.txt", onSuccess, onError);
@@ -880,6 +915,7 @@ window.resolveLocalFileSystemURL(entry.toURL(), gotFile779, function(e) {
     } else {
         vMyConsoleLog("cdvDownloadFile129(), fileTransfer.download(), radka 635, download skiped: |" + entry.toURL() + "|, url=" + url + "|, fileURL1=" + fileURL1 + "|, iFileExist=" + iFileExist + "|, iFileSize=" + iFileSize + "|");
     }
+	} // of if(true) ...else
 };
 
 function cdvDownloadFile(url, fileURL) {
@@ -887,6 +923,10 @@ function cdvDownloadFile(url, fileURL) {
     //    for example, cdvfile://localhost/persistent/path/to/downloads/
     //                            = adresar v interni pameti:  //path/to/dovnloads/
 
+	if (true) {
+		 setTimeout(vGJKfileTransfer(url16, myFilename16), 002); // pouzijeme Oldovo vylepsenou verzi
+	}
+	else {
     var fileTransfer = new FileTransfer();
     var uri = encodeURI(url);
     // fileURL = 'cdvfile://localhost/persistent/path/to/downloads/Hlas.mp3';
@@ -918,6 +958,7 @@ function cdvDownloadFile(url, fileURL) {
             }
         }
     );
+	}
 };
 
 function vMluv2(lang, w2) {
@@ -936,15 +977,17 @@ function vMluv2(lang, w2) {
     };
 };
 
-function selectOneValueFromTable9(t1, q1, clause, columnName, fvypln9) { // vysledek je vracen do funkce fvypln
+function selectOneValueFromTable9(t1, q1, vGJKclause3, columnName, fvypln9) { // vysledek je vracen do funkce fvypln
     var s2, txt;
     var iMax = -1;
     //  vysledek volani pro funkci fvypln9(GlobalResult2)
 
     gjk001OpenDB();
-    s2 = q1 + clause;
-    txt = "GJK036.10166 before |" + s2 + "|";
+    s2 = q1 + vGJKclause3;
+    txt = "selectOneValueFromTable9(), radka 986,  s2=|" + s2 + "|, columnName=|"
+	+columnName+"|, vGJKclause3=|"+vGJKclause3+"|";
     GjkDebugPrintf(9, txt);
+	vMyConsoleLog(txt, 8000);
     try {
         Gjkdb.transaction(function(tx) {
             // http://stackoverflow.com/questions/6780911/web-sql-transaction-returns-empty
@@ -968,9 +1011,9 @@ function selectOneValueFromTable9(t1, q1, clause, columnName, fvypln9) { // vysl
                     //vMluv2(DBAPI.dbRow.fromLang, value2);
                     vMluv2('en', value2);
                     if (value2 < 1) {
-                        alert("DB ingest finished OK. Ingested " + value2 + ' words. For an empty database please go to "SETUP" and select source of your Lesson data (eg. "from http://www.opesol.org".');
+                        alert("DB ingest finished OK (radka 1013). s2="+s2+"|, Ingested " + value2 + ' words. For an empty database please go to "SETUP" and select source of your Lesson data (eg. "from http://www.opesol.org".');
                     } else {
-                        alert("DB download finished OK with " + value2 + " words");
+                        alert("DB download finished OK (radka 1015) with " + value2 + " words");
                     }
                     fvypln9(GlobalResult2);
                     DBAPI.nacitam = false;
@@ -997,14 +1040,23 @@ function selectOneValueFromTable9(t1, q1, clause, columnName, fvypln9) { // vysl
     return;
 }
 
-function selectOneValueFromTable10(t1, q1, clause, columnName, setValName, fvypln10) { // vysledek je vracen do funkce fvypln
+function vypln1392(val, variableName) { // vratil GJK 2014.07.08.
+    iGlobal1392 = val;
+    //alert(window["variableName"]); // to mi nefunguje 
+    //DBAPI.dbRow.toLang = val;
+    //alert(DBAPI.dbRow.toLang); // to mi nefunguje 
+	alert("vypln1392(), radka 2633, variableName=|"+variableName+"|, val=|"+val+"|");
+    return (val);
+}
+
+function selectOneValueFromTable10(t1, q1, vGJKclause4, columnName, setValName, fvypln10) { // vysledek je vracen do funkce fvypln
     var s2, txt;
     var iMax = -1,
         returnValue = '';
     //  vysledek volani pro funkci fvypln10(GlobalResult2)
 
     gjk001OpenDB();
-    s2 = q1 + clause;
+    s2 = q1 + vGJKclause4;
     txt = "GJK036.10166..2014.07.09. before |" + s2 + "|";
     GjkDebugPrintf(9, txt);
     try {
@@ -1118,7 +1170,7 @@ var DBAPI = {
     otevriDB: function() {
         var t1 = '',
             sl1 = '',
-            clause = '';
+            vGJKclause5 = '';
         gjk001OpenDB();
 
         // openFS(this); // open local sandbox File System on client 
@@ -1167,7 +1219,7 @@ var DBAPI = {
     },
 
     znam: function() {
-        var clause = '',
+        var vGJKclause6 = '',
             sql1;
 
         vMyConsoleLog("DBAPI.znam");
@@ -1179,7 +1231,7 @@ var DBAPI = {
 		result.word[0] = result.word[0] + " index: " + this.index; */
 
         // GJK 2014.06.25 11:11
-        //t1, q1, clause, arrayAllResults, myDiv, GlobalResult2) {
+        //t1, q1, vGJKclause6, arrayAllResults, myDiv, GlobalResult2) {
         vMyConsoleLog("660: GlobalResult2");
         vMyConsoleLog(GlobalResult2);
         iGlobalRowId = GlobalResult2.iRow;
@@ -1195,8 +1247,8 @@ var DBAPI = {
         //sql1 = ' * ';
         txt = "GJK008.00013 after  updateTable8(|" + sql1 + "|)";
         GjkDebugPrintf(0, txt);
-        //this.updateTable8(tableName, sql1, clause, null);
-        DBAPI.updateTable8(tableName, sql1, clause, vypln3);
+        //this.updateTable8(tableName, sql1, vGJKclause6, null);
+        DBAPI.updateTable8(tableName, sql1, vGJKclause6, vypln3);
         //************************************************************
         //vMyConsoleLog('011:' + sql1);
         app.log("DBAPI.znam konec");
@@ -1205,7 +1257,7 @@ var DBAPI = {
     neznam: function()
         // neznam posledni slovo
         {
-            var clause = '',
+            var vGJKclause7 = '',
                 sql1;
 
             vMyConsoleLog("DBAPI.neznam");
@@ -1215,7 +1267,7 @@ var DBAPI = {
 		result.word[0] = result.word[0] + " index: " + this.index; */
 
             // GJK 2014.06.25 11:11
-            //t1, q1, clause, arrayAllResults, myDiv, GlobalResult2) {
+            //t1, q1, vGJKclause7, arrayAllResults, myDiv, GlobalResult2) {
             vMyConsoleLog("662: GlobalResult2");
             vMyConsoleLog(GlobalResult2);
             iGlobalRowId = GlobalResult2.iRow;
@@ -1232,13 +1284,14 @@ var DBAPI = {
 */
 
             sql1 = "UPDATE GJK0006TABs1 SET c1=1, t1=(DATETIME('now')) WHERE rowId=0";
-            sql1 = "UPDATE " + tableName + " SET t2=(DATETIME('now')), c2=1+(SELECT c2 AS c2 FROM " + tableName + " WHERE rowId=" + iGlobalRowId + ") WHERE rowId=" + iGlobalRowId;
+            sql1 = "UPDATE " + tableName + " SET t2=(DATETIME('now')), c2=1+(SELECT c2 AS c2 FROM " + tableName + " WHERE rowId=" 
+			+ iGlobalRowId + ") WHERE rowId=" + iGlobalRowId;
             //sql1 = "UPDATE " + tableName + " SET c1=0, t1=(DATETIME('now')) WHERE w1='kocka'";
             //sql1 = ' * ';
             txt = "GJK008.00013 after  updateTable8(|" + sql1 + "|)";
             GjkDebugPrintf(0, txt);
-            //this.updateTable8(tableName, sql1, clause, null);
-            DBAPI.updateTable8(tableName, sql1, clause, vypln3);
+            //this.updateTable8(tableName, sql1, vGJKclause7, null);
+            DBAPI.updateTable8(tableName, sql1, vGJKclause7, vypln3);
             //************************************************************
             //vMyConsoleLog('011:' + sql1);
             app.log("DBAPI.neznam ");
@@ -1313,10 +1366,10 @@ var DBAPI = {
                             iRandom = Math.round(Math.random() + 1); // 1..iPocetSlovCelkem // abychom zamezili cyklum, budeme vybirat nahodnou radku
                             if (iRandom == 1) {
                                 // we don't have audio1 
-                                sql1 = ' DISTINCT rowId AS rowId, w1 AS w1, w2 AS w2, p1 AS p1, p2 AS p2, a1 AS a1, a2 AS a2, c1 AS c1, c2 AS c2, t1 AS T1, st1 AS st1, l1 as l1, v1 as v1 FROM ' + tableName + ' WHERE a1 <> 1286 LIMIT 1';
+                                sql1 = ' DISTINCT rowId AS rowId, w1 AS w1, w2 AS w2, p1 AS p1, p2 AS p2, a1 AS a1, a2 AS a2, c1 AS c1, c2 AS c2, t1 AS T1, st1 AS st1, l1 as l1, v1 as v1 FROM ' + tableName + ' LIMIT 1';
                             } else {
                                 // we don't have audio2
-                                sql1 = ' DISTINCT rowId AS rowId, w1 AS w1, w2 AS w2, p1 AS p1, p2 AS p2, a1 AS a1, a2 AS a2, c1 AS c1, c2 AS c2, t1 AS T1, st1 AS st1, l1 as l1, v1 as v1 FROM ' + tableName + ' WHERE a2 <> 1286 LIMIT 1';
+                                sql1 = ' DISTINCT rowId AS rowId, w1 AS w1, w2 AS w2, p1 AS p1, p2 AS p2, a1 AS a1, a2 AS a2, c1 AS c1, c2 AS c2, t1 AS T1, st1 AS st1, l1 as l1, v1 as v1 FROM ' + tableName + ' LIMIT 1';
                             }
                             iRandom = Math.round(Math.random() * DBAPI.dbRow.iPocetSlovCelkem) + 1; // 1..iPocetSlovCelkem
                             /* sql1 = ' DISTINCT rowId AS rowId, w1 AS w1, w2 AS w2, p1 AS p1, p2 AS p2, a1 AS a1, a2 AS a2, c1 AS c1, c2 AS c2, t1 AS T1, st1 AS st1, l1 as l1, v1 as v1 FROM ' 
@@ -1327,17 +1380,17 @@ var DBAPI = {
 			+ tableName + ' WHERE rowId = ' + iRandom;
 			*/
                             vMyConsoleLog("synchronizeAudio(_, radka 1297, sql1=|" + sql1 + "|");
-                            clause = '';
-                            this.selectFromTable129(tableName, sql1, clause, vypln129);
+                            vGJKclause7 = '';
+                            this.selectFromTable129(tableName, sql1, vGJKclause7, vypln129);
                         } // else 
                     }
                 }
             } // if(typeof navigator === 'undefined'){ 
             else {
                 // just to test in CHROME
-                clause = '';
+                vGJKclause7 = '';
                 sql1 = ' DISTINCT rowId AS rowId, w1 AS w1, w2 AS w2, p1 AS p1, p2 AS p2, a1 AS a1, a2 AS a2, c1 AS c1, c2 AS c2, t1 AS T1, st1 AS st1, l1 as l1, v1 as v1 FROM ' + tableName + ' WHERE a2 <> 1 LIMIT 1';
-                this.selectFromTable129(tableName, sql1, clause, vypln129);
+                this.selectFromTable129(tableName, sql1, vGJKclause7, vypln129);
             };
             DBAPI.dbRow.iAudiosSyncedSoFar = DBAPI.dbRow.iPocetSlovCelkem;
             // zzz vypln129() vola async synchronizeAudio(),  setTimeout(DBAPI.synchronizeAudio(DBAPI.dbRow.button_id), 123);
@@ -1368,16 +1421,16 @@ var DBAPI = {
                             iRandom = Math.round(Math.random() + 1); // 1..iPocetSlovCelkem // abychom zamezili cyklum, budeme vybirat nahodnou radku
                             if (iRandom == 1) {
                                 // we don't have audio1 
-                                sql1 = ' DISTINCT rowId AS rowId, w1 AS w1, w2 AS w2, p1 AS p1, p2 AS p2, a1 AS a1, a2 AS a2, c1 AS c1, c2 AS c2, t1 AS T1, st1 AS st1, l1 as l1, v1 as v1 FROM ' + tableName + ' WHERE a1 <> 1286 LIMIT 1';
+                                sql1 = ' DISTINCT rowId AS rowId, w1 AS w1, w2 AS w2, p1 AS p1, p2 AS p2, a1 AS a1, a2 AS a2, c1 AS c1, c2 AS c2, t1 AS T1, st1 AS st1, l1 as l1, v1 as v1 FROM ' + tableName + ' WHERE st1 < 998 LIMIT 1';
                             } else {
                                 // we don't have audio2
-                                sql1 = ' DISTINCT rowId AS rowId, w1 AS w1, w2 AS w2, p1 AS p1, p2 AS p2, a1 AS a1, a2 AS a2, c1 AS c1, c2 AS c2, t1 AS T1, st1 AS st1, l1 as l1, v1 as v1 FROM ' + tableName + ' WHERE a2 <> 1286 LIMIT 1';
+                                sql1 = ' DISTINCT rowId AS rowId, w1 AS w1, w2 AS w2, p1 AS p1, p2 AS p2, a1 AS a1, a2 AS a2, c1 AS c1, c2 AS c2, t1 AS T1, st1 AS st1, l1 as l1, v1 as v1 FROM ' + tableName + ' WHERE st1 < 998 LIMIT 1';
                             }
                             var z;
                             for (z = 1; z < (DBAPI.dbRow.iPocetSlovCelkem + 1); z++) {
                                 sql1 = ' DISTINCT rowId AS rowId, w1 AS w1, w2 AS w2, p1 AS p1, p2 AS p2, a1 AS a1, a2 AS a2, c1 AS c1, c2 AS c2, t1 AS T1, st1 AS st1, l1 as l1, v1 as v1 FROM ' + tableName + ' WHERE rowId = '+z+' AND st1 < 998';
-                                clause = '';
-                                this.selectFromTable7129(tableName, sql1, clause, vypln7129);
+                                vGJKclause7 = '';
+                                this.selectFromTable7129(tableName, sql1, vGJKclause7, vypln7129);
                             };
 
                         } // else 
@@ -1387,23 +1440,27 @@ var DBAPI = {
             } // if(typeof navigator === 'undefined'){ 
             else {
                 // just to test in CHROME
-                clause = '';
-                sql1 = ' DISTINCT rowId AS rowId, w1 AS w1, w2 AS w2, p1 AS p1, p2 AS p2, a1 AS a1, a2 AS a2, c1 AS c1, c2 AS c2, t1 AS T1, st1 AS st1, l1 as l1, v1 as v1 FROM ' + tableName + ' WHERE rowId = 7';
+                vGJKclause7 = '';
+                //sql1 = ' DISTINCT rowId AS rowId, w1 AS w1, w2 AS w2, p1 AS p1, p2 AS p2, a1 AS a1, a2 AS a2, c1 AS c1, c2 AS c2, t1 AS T1, st1 AS st1, l1 as l1, v1 as v1 FROM ' + tableName + ' WHERE rowId = 7';
 
 				var z;
                             for (z = 1; z < (DBAPI.dbRow.iPocetSlovCelkem + 1); z++) {
-                                sql1 = ' DISTINCT rowId AS rowId, w1 AS w1, w2 AS w2, p1 AS p1, p2 AS p2, a1 AS a1, a2 AS a2, c1 AS c1, c2 AS c2, t1 AS T1, st1 AS st1, l1 as l1, v1 as v1 FROM ' + tableName + ' WHERE rowId = ' + z;
-                                clause = '';
-                                this.selectFromTable7129(tableName, sql1, clause, vypln7129); //alert("radka 1395");
+                                sql1 = ' DISTINCT rowId AS rowId, w1 AS w1, w2 AS w2, p1 AS p1, p2 AS p2, a1 AS a1, a2 AS a2, c1 AS c1, c2 AS c2, t1 AS T1, st1 AS st1, l1 as l1, v1 as v1 FROM ' + tableName + ' WHERE rowId = ' + z + " AND st1 < 998";
+                                vGJKclause7 = '';
+                                this.selectFromTable7129(tableName, sql1, vGJKclause7, vypln7129); //alert("radka 1395");
                             };
 
-                //this.selectFromTable7129(tableName, sql1, clause, vypln129);
+                //this.selectFromTable7129(tableName, sql1, vGJKclause7, vypln129);
             };
             DBAPI.dbRow.iAudiosSyncedSoFar = DBAPI.dbRow.iPocetSlovCelkem;
             // zzz vypln129() vola async synchronizeAudio(),  setTimeout(DBAPI.synchronizeAudio(DBAPI.dbRow.button_id), 123);
         },
 
-    nactiDataReset: function(path, filename)
+	nactiDataReset: function(path, filename) {
+		setTimeout(DBAPI.nactiDataReset752(path, filename), 0123); // setri Main thread, moc chudak pracuje
+	}, 
+	
+    nactiDataReset752: function(path, filename)
         // nacte nova data ze serveru "path" a resetuje zobrazeni
         {
             var url = path;
@@ -1438,13 +1495,13 @@ var DBAPI = {
         //document.write("<BR>|GJK.011:inde2.html, Oldo, toto nasaje stranku |" + url + '|<HR>|'+ strGloblalText + '|');
         //vMyConsoleLog('|' + strGloblalText + '|');
 
-        resultArray1 = strGloblalText.split(/\r?\n/);
+        resultArray1 = strGloblalText.split(/\r?\n/); // rozhazej na jednotlive radky
 
         notNow3 = 1;
         if (notNow3 == 0) {
             var iKolikCelkem = 0;
 
-            vMyConsoleLog("GJK002.001 resultArray1.length=|" + resultArray1.length + '|');
+            vMyConsoleLog("ajaxOnLoad(), radka 1504, resultArray1.length=|" + resultArray1.length + '|', 8000);
 
             if (iKolikCelkem === 0) {
                 preloz3('aaaaaaa'); // prvni kick?!
@@ -1452,15 +1509,15 @@ var DBAPI = {
             for (var p in resultArray1) {
                 var rowId, w1, w2, p1, p2, a1, a2, c1, c2, st1, t1, t2;
 
-                // for every line do
+                vMyConsoleLog("ajaxOnLoad(), radka 1512, p=|"+p+'|', 8000); // for every line do 
                 resultArray2 = resultArray1[p].split('|');
-                rowId = resultArray2[1];
-                w1 = resultArray2[2];
-                w2 = resultArray2[3];
-                p1 = resultArray2[4];
-                p2 = resultArray2[5];
-                a1 = resultArray2[6];
-                a2 = resultArray2[7];
+                rowId = mysql_real_escape_string(resultArray2[1]);
+                w1 = mysql_real_escape_string(resultArray2[2]);
+                w2 = mysql_real_escape_string(resultArray2[3]);
+                p1 = mysql_real_escape_string(resultArray2[4]);
+                p2 = mysql_real_escape_string(resultArray2[5]);
+                a1 = mysql_real_escape_string(resultArray2[6]);
+                a2 = mysql_real_escape_string(resultArray2[7]);
                 c1 = 0;
                 c2 = 0;
                 st1 = 0;
@@ -1535,7 +1592,7 @@ var DBAPI = {
         //app.log("DBAPI.dejNextSlovo ");
         //vMyConsoleLog("DBAPI.dejNextSlovo ");
         //  
-        var clause = '',
+        var vGJKclause8 = '',
             iRandom = 1,
             sql1;
 
@@ -1555,7 +1612,7 @@ var DBAPI = {
 
             sql1 = ' DISTINCT rowId AS rowId, w1 AS w1, w2 AS w2, p1 AS p1, p2 AS p2, a1 AS a1, a2 AS a2, c1 AS c1, c2 AS c2, t1 AS T1, st1 AS st1, l1 as l1, v1 as v1 FROM ' + tableName + ' WHERE rowId <> ' + iGlobalRowId + ' AND w1 IN ( SELECT DISTINCT w1 FROM ' + tableName + ' WHERE st1 < 101 ORDER BY c1 ASC LIMIT 5 )  order by t2 ASC, t1 ASC limit 2';
 
-            sql1 = ' DISTINCT rowId AS rowId, w1 AS w1, w2 AS w2, p1 AS p1, p2 AS p2, a1 AS a1, a2 AS a2, c1 AS c1, c2 AS c2, t1 AS T1, st1 AS st1, l1 as l1, v1 as v1 FROM ' + tableName + ' WHERE rowId = ' + iRandom + ' AND rowId <> ' + iGlobalRowId;
+            sql1 = ' DISTINCT rowId AS rowId, w1 AS w1, w2 AS w2, p1 AS p1, p2 AS p2, a1 AS a1, a2 AS a2, c1 AS c1, c2 AS c2, t1 AS T1, st1 AS st1, l1 as l1, v1 as v1 FROM ' + tableName + ' WHERE rowId = ' + iRandom + ' AND rowId <> ' + iGlobalRowId + ' AND st1 < 998';
 
         } else {
 
@@ -1563,7 +1620,7 @@ var DBAPI = {
 
             sql1 = ' DISTINCT rowId AS rowId, w1 AS w2, w2 AS w1, p1 AS p2, p2 AS p1, a1 AS a2, a2 AS a1, c1 AS c2, c2 AS c1, t1 AS t2, st1 AS st1, l1 as l1, v1 as v1 FROM ' + tableName + ' WHERE rowId <> ' + iGlobalRowId + ' AND w1 IN ( SELECT DISTINCT w1 FROM ' + tableName + ' WHERE st1 < 101 ORDER BY c1 ASC LIMIT 5 )  order by t2 ASC, t1 ASC LIMIT 2';
 
-            sql1 = ' DISTINCT rowId AS rowId, w1 AS w2, w2 AS w1, p1 AS p2, p2 AS p1, a1 AS a2, a2 AS a1, c1 AS c2, c2 AS c1, t1 AS t2, st1 AS st1, l1 as l1, v1 as v1 FROM ' + tableName + ' WHERE rowId = ' + iRandom + ' AND rowId <> ' + iGlobalRowId;
+            sql1 = ' DISTINCT rowId AS rowId, w1 AS w2, w2 AS w1, p1 AS p2, p2 AS p1, a1 AS a2, a2 AS a1, c1 AS c2, c2 AS c1, t1 AS t2, st1 AS st1, l1 as l1, v1 as v1 FROM ' + tableName + ' WHERE rowId = ' + iRandom + ' AND rowId <> ' + iGlobalRowId + ' AND st1 < 998';
 
         }
 
@@ -1573,21 +1630,21 @@ var DBAPI = {
         //sql1 = ' * ';
         txt = "GJK008.00013 after  selectFromTable13(|" + sql1 + "|)";
         GjkDebugPrintf(0, txt);
-        this.selectFromTable13(tableName, sql1, clause, fvypln);
+        this.selectFromTable13(tableName, sql1, vGJKclause8, fvypln);
 
         //************************************************************
         //vMyConsoleLog(sql1);
         return;
     },
 
-    selectFromTable129: function(t1, q1, clause, fvypln) {
+    selectFromTable129: function(t1, q1, vGJKclause9, fvypln) {
         // vysledek je vracen do funkce fvypln
         var s2, txt;
         var iMax = -1;
 
         DBAPI.dbRow.selectFromTable129_iRowId = (-129);
         gjk001OpenDB();
-        s2 = "SELECT " + q1 + clause;
+        s2 = "SELECT " + q1 + vGJKclause9;
         txt = "GJK006.10166, 2014.07.27, 1114,  before |" + s2 + "|";
         GjkDebugPrintf(9, txt);
         vMyConsoleLog("selectFromTable129(), radka 1591, selectFromTable129(), s2=|" + s2 + "|");
@@ -1632,13 +1689,13 @@ var DBAPI = {
                             vMluv129(DBAPI.dbRow.fromLang, DBAPI.dbRow.selectFromTable129_w1); // zzz copy audio file from server to client disk
                             // now update SQL 
                             //sql1 = "UPDATE " + tableName + " SET a1=1 WHERE rowId=" + DBAPI.dbRow.selectFromTable129_iRowId;
-                            //DBAPI.updateTable8(tableName, sql1, clause, vypln3);
+                            //DBAPI.updateTable8(tableName, sql1, vGJKclause9, vypln3);
 
                             vMyConsoleLog("selectFromTable129(), vypln129(), radka 1299, pred vMluv129(" + DBAPI.dbRow.toLang + "," + DBAPI.dbRow.selectFromTable129_w2[0] + ");");
                             vMluv129(DBAPI.dbRow.toLang, DBAPI.dbRow.selectFromTable129_w2[0]); // zzz copy audio file from server to client disk
                             // now update SQL 
                             sql1 = "UPDATE " + tableName + " SET a1=1, a2=1 WHERE rowId=" + DBAPI.dbRow.selectFromTable129_iRowId;
-                            DBAPI.updateTable8(tableName, sql1, clause, vypln129);
+                            DBAPI.updateTable8(tableName, sql1, vGJKclause9, vypln129);
 
                             if (fvypln) fvypln(DBAPI.dbRow);
                         } else {
@@ -1666,24 +1723,24 @@ var DBAPI = {
         return;
     },
 
-    selectFromTable7129: function(t1, q1, clause, fvypln) {
+    selectFromTable7129: function(t1, q1, vGJKclause10, fvypln) {
         // vysledek je vracen do funkce fvypln
         var s2, txt;
         var iMax = -1;
 
         DBAPI.dbRow.selectFromTable129_iRowId = (-129);
         gjk001OpenDB();
-        s2 = "SELECT " + q1 + clause;
+        s2 = "SELECT " + q1 + vGJKclause10;
         txt = "GJK006.10166, 2014.07.27, 1114,  before |" + s2 + "|";
         GjkDebugPrintf(9, txt);
         vMyConsoleLog("selectFromTable129(), radka 1677, selectFromTable129(), s2=|" + s2 + "|");
 
-        try {  vMyConsoleLog("selectFromTable129(), radka 1679, selectFromTable129(), s2=|" + s2 + "|");
+        try {  vMyConsoleLog("selectFromTable7129(), radka 1738, s2=|" + s2 + "|", 8000);
             Gjkdb.transaction(function(tx) {
                 // http://stackoverflow.com/questions/6780911/web-sql-transaction-returns-empty
                 tx.executeSql(s2, [],
                     function(tx, rs) {
-                        var result = []; vMyConsoleLog("selectFromTable129(), radka 1684, selectFromTable129(), s2=|" + s2 + "|");
+                        var result = []; vMyConsoleLog("selectFromTable7129(), radka 1743, selectFromTable129(), s2=|" + s2 + "|, =|"+rs.rows.length+"|", 000);
                         DBAPI.dbRow.w2.length = 0; // vyprazdnit seznam
                         for (var i = 0; i < rs.rows.length; i++) {
                             var row = rs.rows.item(i);
@@ -1709,29 +1766,37 @@ var DBAPI = {
                             DBAPI.dbRow.selectFromTable129_v1 = row['v1']; // verb1
                         }
 
-                        DBAPI.selectFromTable129_result7 = result;  vMyConsoleLog("selectFromTable129(), radka 1710, selectFromTable129(), s2=|" + s2 + "|");
+                        DBAPI.selectFromTable129_result7 = result;  vMyConsoleLog("selectFromTable7129(), radka 1769, selectFromTable7129(), s2=|" + s2 + "|");
                         //DBAPI.dbRow.result7.pushd("w1=" + DBAPI.dbRow.w1);
                         if (DBAPI.dbRow.selectFromTable129_iRowId > 0) {
-                            vMyConsoleLog("selectFromTable129(), radka 1713,  selectFromTable129_iRowId=|" + DBAPI.dbRow.selectFromTable129_iRowId + "|");
+                            vMyConsoleLog("selectFromTable7129(), radka 1772,  selectFromTable129_iRowId=|" + DBAPI.dbRow.selectFromTable129_iRowId 
+							+ "|, s2=|" + s2 + "|, a1="+DBAPI.dbRow.selectFromTable129_a1+"|, a2=|"+DBAPI.dbRow.selectFromTable129_a2+"|", 8000);
 
-                            vMyConsoleLog("selectFromTable129(), vypln129(), radka 1293, pred vMluv129(" + DBAPI.dbRow.fromLang + "," + DBAPI.dbRow.selectFromTable129_w1 + ");");
-                            vMluv7129(DBAPI.dbRow.fromLang, DBAPI.dbRow.selectFromTable129_w1); // zzz copy audio file from server to client disk
-                            // now update SQL 
+                            vMyConsoleLog("selectFromTable7129(), radka 1774, pred vMluv7129(" + DBAPI.dbRow.fromLang + "," + DBAPI.dbRow.selectFromTable129_w1 + ");");
+                            if (DBAPI.dbRow.selectFromTable129_a1 < 1) 
+							{	vMyConsoleLog("selectFromTable7129(), radka 1777, pred vMluv7129(" + DBAPI.dbRow.fromLang + ", w1=|" 
+								+ DBAPI.dbRow.selectFromTable129_w1 + "|);, a1=|"+DBAPI.dbRow.selectFromTable129_a1+"|", 8000);
+								vMluv7129(DBAPI.dbRow.fromLang, DBAPI.dbRow.selectFromTable129_w1); // zzz copy audio file from server to client disk
+                            }
+							// now update SQL 
                             //sql1 = "UPDATE " + tableName + " SET a1=1 WHERE rowId=" + DBAPI.dbRow.selectFromTable129_iRowId;
-                            //DBAPI.updateTable8(tableName, sql1, clause, vypln3);
+                            //DBAPI.updateTable8(tableName, sql1, vGJKclause10, vypln3);
 
-                            vMyConsoleLog("selectFromTable129(), vypln129(), radka 1299, pred vMluv129(" + DBAPI.dbRow.toLang + "," + DBAPI.dbRow.selectFromTable129_w2[0] + ");");
-                            vMluv7129(DBAPI.dbRow.toLang, DBAPI.dbRow.selectFromTable129_w2[0]); // zzz copy audio file from server to client disk
-                            // now update SQL 
-                            sql1 = "UPDATE " + tableName + " SET a1=1, a2=1 WHERE rowId=" + DBAPI.dbRow.selectFromTable129_iRowId;
-                            DBAPI.updateTable8(tableName, sql1, clause, vypln129);
+                            vMyConsoleLog("selectFromTable7129(), radka 1780, pred vMluv7129(" + DBAPI.dbRow.toLang + "," + DBAPI.dbRow.selectFromTable129_w2[0] + ");");
+                            if (DBAPI.dbRow.selectFromTable129_a2 < 1) 
+							{	vMyConsoleLog("selectFromTable7129(), radka 1787, pred vMluv7129(" + DBAPI.dbRow.toLang + ", w2=|" 
+								+ DBAPI.dbRow.selectFromTable129_w2[0] + "|);, a2=|"+DBAPI.dbRow.selectFromTable129_a2+"|", 8000);
+								vMluv7129(DBAPI.dbRow.toLang, DBAPI.dbRow.selectFromTable129_w2[0]); // zzz copy audio file from server to client disk
+                            }// now update SQL 
+                            //sql1 = "UPDATE " + tableName + " SET a1=1, a2=1 WHERE rowId=" + DBAPI.dbRow.selectFromTable129_iRowId;
+                            //DBAPI.updateTable8(tableName, sql1, vGJKclause10, vypln129);
 
                             if (fvypln) fvypln(DBAPI.dbRow);
-                        } else {  vMyConsoleLog("selectFromTable129(), radka 1728, selectFromTable129(), s2=|" + s2 + "|");
-                            vMyConsoleLog("selectFromTable129(), radka 1729, finish, selectFromTable129_iRowId=|" + DBAPI.dbRow.selectFromTable129_iRowId + "|");
+                        } else {  vMyConsoleLog("selectFromTable7129(), radka 1728, selectFromTable7129(), s2=|" + s2 + "|");
+                            vMyConsoleLog("selectFromTable7129(), radka 1729, finish, selectFromTable129_iRowId=|" + DBAPI.dbRow.selectFromTable129_iRowId + "|");
                         };
                     },
-                    function(tx, error) { vMyConsoleLog("selectFromTable129(), radka 1732, selectFromTable129(), s2=|" + s2 + "|");
+                    function(tx, error) { vMyConsoleLog("selectFromTable7129(), radka 1732, selectFromTable7129(), s2=|" + s2 + "|");
                         txt = "GJK006.160107z ERROR  after |" + s2 + "|, iMax=" + iMax + "|, error=" + error.message;
                         GjkDebugPrintf(3, txt);
                         alert('GJK006.160107 Failed sql=|' + s2 + "|, error=" + error.message);
@@ -1741,25 +1806,25 @@ var DBAPI = {
                 txt = "GJK008.90002, sql=|" + s2 + "|";
                 GjkDebugPrintf(77, txt);
             })
-            txt = "GJK008.90003, sql=|" + s2 + "|";  vMyConsoleLog("selectFromTable129(), radka 1742, selectFromTable129(), s2=|" + s2 + "|");
+            txt = "GJK008.90003, sql=|" + s2 + "|";  vMyConsoleLog("selectFromTable7129(), radka 1742, selectFromTable7129(), s2=|" + s2 + "|");
             GjkDebugPrintf(9, txt);
-        } catch (err) {  vMyConsoleLog("selectFromTable129(), radka 1744, selectFromTable129(), s2=|" + s2 + "|");
+        } catch (err) {  vMyConsoleLog("selectFromTable7129(), radka 1744, selectFromTable7129(), s2=|" + s2 + "|");
             alert(" catch(err), table=|" + TableName + "|, sql=|" + s2 + "|, err=" + err + "|");
         }
 
-        txt = "GJK026.33337 selectFromTable129() OK? after |" + s2 + "|, iMax=" + iMax + "|" + ", GlobalResult2.slovo=|" + GlobalResult2.slovo + '|';
-        GjkDebugPrintf(9, txt);  vMyConsoleLog("selectFromTable129(), radka 1648, selectFromTable129(), s2=|" + s2 + "|");
+        txt = "GJK026.33337 selectFromTable7129() OK? after |" + s2 + "|, iMax=" + iMax + "|" + ", GlobalResult2.slovo=|" + GlobalResult2.slovo + '|';
+        GjkDebugPrintf(9, txt);  vMyConsoleLog("selectFromTable7129(), radka 1808, selectFromTable7129(), s2=|" + s2 + "|", 8000);
         return;
     },
 
-    selectFromTable13: function(t1, q1, clause, fvypln) {
+    selectFromTable13: function(t1, q1, vGJKclause11, fvypln) {
         // vysledek je vracen do funkce fvypln
         var s2, txt;
         var iMax = -1;
         if (DBAPI.dbRow.iKolikMluvi > 2) return;
 
         gjk001OpenDB();
-        s2 = "SELECT " + q1 + clause;
+        s2 = "SELECT " + q1 + vGJKclause11;
         txt = "GJK006.10166 before |" + s2 + "|";
         GjkDebugPrintf(9, txt);
         try {
@@ -1863,7 +1928,7 @@ var DBAPI = {
         return;
     },
 
-    updateTable8: function(t1, q1, clause, fvypln) {
+    updateTable8: function(t1, q1, vGJKclause12, fvypln) {
         // vysledek je vracen do funkce fvypln pokud je definovana
         var s2, txt;
         var iMax = -1;
@@ -1880,17 +1945,18 @@ var DBAPI = {
                     function(tx, rs) {
                         if (fvypln) {
                             fvypln(DBAPI.dbRow);
-                            txt = "updateTable8(), radka 1692, after |" + s2 + "|, iMax=" + iMax + "|";
+                            txt = "updateTable8(), radka 1927, after |" + s2 + "|, iMax=" + iMax + "|";
                             vMyConsoleLog(txt);
                         } else {
-                            txt = "updateTable8(), radka 1696, GJK0033.2014.07.08..160118z after |" + s2 + "|, iMax=" + iMax + "|";
+                            txt = "updateTable8(), radka 1927, GJK0033.2014.07.08..160118z after |" + s2 + "|, iMax=" + iMax + "|";
                             vMyConsoleLog(txt);
                         };
                     },
                     function(tx, error) {
-                        txt = "updateTable8(), radka 1701, GJK009.160107z ERROR  after |" + s2 + "|, iMax=" + iMax + "|, error=" + error.message;
+                        txt = "updateTable8(), radka 1937, ERROR  after |" + s2 + "|, iMax=" + iMax + "|, error=" + error.message;
                         GjkDebugPrintf(3, txt);
-                        alert('updateTable8(), radka 1703, GJK009.160107 Failed sql=|' + s2 + "|, error=" + error.message);
+						vMyConsoleLog(txt, 9000);
+                        alert('updateTable8(), radka 1937, Failed sql=|' + s2 + "|, error=" + error.message);
                         //return;
                     });
                 txt = "GJK009.90002, sql=|" + s2 + "|";
@@ -1912,17 +1978,17 @@ var DBAPI = {
     },
 
     kill: function() {
-        var sql1 = '',
-            clause = '';
+        var sql1 = '';
 
-        sql1 = "UPDATE " + tableName + " SET st1 = 3000, t1=(DATETIME('now')), c1=1+(SELECT c1 AS c1 FROM " + tableName + " WHERE rowId=" + DBAPI.dbRow.iRowId + ") WHERE rowId=" + DBAPI.dbRow.iRowId;
+        sql1 = "UPDATE " + tableName + " SET st1 = 3000, t1=(DATETIME('now')), c1=1+(SELECT c1 AS c1 FROM " + tableName 
+		+ " WHERE rowId=" + DBAPI.dbRow.iRowId + ") WHERE rowId=" + DBAPI.dbRow.iRowId;
         // 0..1000 normal word, 3000 killed words
         //sql1 = "UPDATE " + tableName + " SET c1=0, t1=(DATETIME('now')) WHERE w1='kocka'";
         //sql1 = ' * ';
         txt = "GJK011.00013.2014.07.09.  after  updateTable8(|" + sql1 + "|)";
         GjkDebugPrintf(0, txt);
-        //this.updateTable8(tableName, sql1, clause, null);
-        DBAPI.updateTable8(tableName, sql1, clause, vypln3);
+        //this.updateTable8(tableName, sql1, '', null);
+        DBAPI.updateTable8(tableName, sql1, '', vypln3);
 
         // znova prepocitej slova po KILL
 
@@ -1989,7 +2055,7 @@ var DBAPI = {
         //alert("onlyaudio Not implemented DBAPI.dbRow.onlyaudio2=" + DBAPI.dbRow.onlyaudio2);
     },
     automaticaudio: function() {
-vGJKfileTransfer();
+		// vGJKfileTransfer(url16, myFilename16); // pouzijeme Oldovo vylepsenou verzi vGJKfileTransfer();
         // vynuluj buffery pro zvuky
         iGlobalCurrentZvuk = 0;
         iGlobalMaxZvuk = -1;
@@ -2578,10 +2644,32 @@ function gotFile779(file, GJKstrFileName) {
     return -1;
 };
 
+function iGjkCheckFileSize77(fs, strFileName) {
+	var iLocalFileSize=0, sql1=0, pole1 = [], pole2 = [], mylang1='', myword1='', junkAAA=''
+	iLocalFileSize = (+12345);
+	// to je stare s pmoci Media hrani iGjkCheckFileSize78(fs, strFileName);
+	vMyConsoleLog("iGjkCheckFileSize77(), radka 2597, fn=|" + strFileName + "|, iLocalFileSize=|" + iLocalFileSize + "|", 000); // 09-24 06:07:00.780: D/CordovaLog(1354): file:///android_asset/www/DBapi.js: Line 2948 : iGjkCheckFileSize77(), radka 2598, fn=|cdvfile://localhost/persistent/path/to/downloads/DATA/AUDIO/en/date.wav|, iFoo=|684|
+	iGlobalFileSize = iLocalFileSize;
+	
+	pole1 = strFileName.split(".wav"); // zapamatuj si delku souboru "zvuk"
+	pole2 = pole1[0].split("/");
+	mylang1 = mysql_real_escape_string(pole2[pole2.length - 2]);
+	myword1 = mysql_real_escape_string(pole2[pole2.length - 1]);
+	if (mylang1 == DBAPI.dbRow.toLang) 
+		sql1 = 'SELECT MAX(a2) AS aaa FROM ' + tableName + ' WHERE w2 = "'+myword1+'"';
+	if (mylang1 == DBAPI.dbRow.fromLang) 
+		sql1 = 'SELECT MAX(a1) AS aaa FROM ' + tableName + ' WHERE w1 = "'+myword1+'"';
+	
+    queryDB8164(sql1);
+	if (iGlobal1392 < 0)
+		vMyConsoleLog("iGjkCheckFileSize77(), ALERT!, radka 2656a, strFileName=|"+strFileName+"|, sql1=|"+sql1+"|, iGlobal1392 =|"+iGlobal1392+"|", 9000); else vMyConsoleLog("iGjkCheckFileSize77(), radka 2656b, OK, strFileName=|"+strFileName+"|, sql1=|"+sql1+"|, iGlobal1392 =|"+iGlobal1392+"|", 8000);
+	iLocalFileSize = iGlobal1392;
+	return iLocalFileSize;
+}
 // WEB local storage 2014.07.23.
 // http://diveintohtml5.info/storage.html
 // http://www.w3schools.com/html/html5_webstorage.asp
-function iGjkCheckFileSize77(fs, strFileName) {
+function iGjkCheckFileSize78(fs, strFileName) {
     var iJunk3 = 0,
         iReturn = (-9);
 
@@ -2591,35 +2679,37 @@ function iGjkCheckFileSize77(fs, strFileName) {
 
 	//strFileName = strFileName.replace("cdvfile://localhost/persistent", "file:///storage/sdcard/path"); // blbe !!! harcoded stuff
 	//strFileName = strFileName.replace("/storage/sdcard/path/", "");
-    vMyConsoleLog("iGjkCheckFileSize77(), radka 2593, fn=|" + strFileName + "|", 1000);
+    vMyConsoleLog("iGjkCheckFileSize78(), radka 2613, fn=|" + strFileName + "|", 1000);
 
     var my_media = new Media(strFileName, function() { // succes being called AFTER main body of Media, AFTER plaing stops
         var iFoo = 0; //  my_media.getDuration()
         iFoo = 1000.00 * my_media.getDuration();
-        vMyConsoleLog("iGjkCheckFileSize77(), radka 2598, fn=|" + strFileName + "|, iFoo=|" + iFoo + "|", 8000);
-        iReturn = (-3);
+        vMyConsoleLog("iGjkCheckFileSize78(), radka 2618, fn=|" + strFileName + "|, iFoo=|" + iFoo + "|", 8000); // 09-24 06:07:00.780: D/CordovaLog(1354): file:///android_asset/www/DBapi.js: Line 2948 : iGjkCheckFileSize78(), radka 2598, fn=|cdvfile://localhost/persistent/path/to/downloads/DATA/AUDIO/en/date.wav|, iFoo=|684|
+        iReturn = (-3); // 09-24 08:02:01.700: D/CordovaLog(936): file:///android_asset/www/DBapi.js: Line 2961 : iGjkCheckFileSize78(), radka 2598, fn=|cdvfile://localhost/persistent/path/to/downloads/DATA/AUDIO/en/model.wav|, iFoo=|684|
         if (iFoo > 0) iReturn = iFoo;
         my_media.release();
 		this.release();
+		iGlobalFileSize = iReturn;
         return iReturn;
     });
     iJunk3 = 1000.00 * my_media.getDuration();
-    vMyConsoleLog("iGjkCheckFileSize77(), radka 2607, fn=|" + strFileName + "|, iJunk3=|" + iJunk3 + "|", 8000);
+    if(iJunk3>0) vMyConsoleLog("iGjkCheckFileSize78(), radka 2627, fn=|" + strFileName + "|, iJunk3=|" + iJunk3 + "|", 8000);
     // main body my_media = new Media
    //* mam nejake media, neumim najit velikost, bud reknu velikost je (+0.01) nebo (-1)?, Mozna to vleze na OnSuccess()?,  */
-	my_media.play(); 
+	//my_media.play(); 
 	iJunk3 = 1000.00*my_media.getDuration(); 
-	vMyConsoleLog("iGjkCheckFileSize77(), radka 2612, fn=|" + strFileName + "|, iJunk3=|"+iJunk3+"|", 8000); // musim hrat jinak  my_media.getDuration() == (-1), bez my_media.play();
-	//my_media.stop(); 
+	if(iJunk3>0) vMyConsoleLog("iGjkCheckFileSize78(), radka 2632, fn=|" + strFileName + "|, iJunk3=|"+iJunk3+"|", 8000); // musim hrat jinak  my_media.getDuration() == (-1), bez my_media.play();
+	my_media.stop(); 
 	iJunk3 = 1000.00*my_media.getDuration(); //iJunk3 = my_media.getDuration(); // koukni na WEB
-	vMyConsoleLog("iGjkCheckFileSize77(), radka 2615, fn=|" + strFileName + "|, iJunk3=|"+iJunk3+"|", 8000); 
+	if(iJunk3>0) vMyConsoleLog("iGjkCheckFileSize78(), radka 2635, fn=|" + strFileName + "|, iJunk3=|"+iJunk3+"|", 8000); 
     iReturn = (-2);
     if (iJunk3 > 0) iReturn = iJunk3;
-	// alert("iGjkCheckFileSize77(), radka 2618, fn=|" + strFileName + "|, iJunk3=|" + iJunk3 + "|");;
-    //my_media.release();
+	vMyConsoleLog("iGjkCheckFileSize78(), radka 2638, fn=|" + strFileName + "|, iJunk3=|" + iJunk3 + "|, iReturn="+iReturn+"|", 8000);
+	//alert("iGjkCheckFileSize78(), radka 2638, fn=|" + strFileName + "|, iJunk3=|" + iJunk3 + "|, iReturn="+iReturn+"|");
+    // this.release in OnSuccess?my_media.release();
 
     // Play audio
-    //onDeviceReady778(strFileName);
+    //onDeviceReady788(strFileName);
     /*
     fs.root.getFile(strFileName, {
         create: false
@@ -2652,14 +2742,14 @@ function iGjkCheckFileSize77(fs, strFileName) {
 	window.resolveLocalFileSystemURL(strFileName
 		,
 		function(file){
-		    vMyConsoleLog("iGjkCheckFileSize77(), radka 2228, fn=|" + strFileName + "|");
+		    vMyConsoleLog("iGjkCheckFileSize78(), radka 2228, fn=|" + strFileName + "|");
 			file.getMetadata(
 				function(metadata) {
                 //alert("Metadata size=|" + metadata.size + "|, fn=|" + strFileName + "|");
 					if (metadata.size > 0) {
                     // snad mame dobry local WAV file
-                    vMyConsoleLog("iGjkCheckFileSize77(), radka 2234, fn=|" + strFileName + "|, size=|" + metadata.size + "|");
-                    alert("iGjkCheckFileSize77(), radka 2234, fn=|" + strFileName + "|, size=|" + metadata.size + "|");
+                    vMyConsoleLog("iGjkCheckFileSize78(), radka 2234, fn=|" + strFileName + "|, size=|" + metadata.size + "|");
+                    alert("iGjkCheckFileSize78(), radka 2234, fn=|" + strFileName + "|, size=|" + metadata.size + "|");
 					}
 					return metadata.size;
 				}, function(e) {
@@ -2668,25 +2758,24 @@ function iGjkCheckFileSize77(fs, strFileName) {
 				return -1;
             }
 			)	
-			vMyConsoleLog("iGjkCheckFileSize77(), radka 2244, fn=|" + strFileName + "|");			
+			vMyConsoleLog("iGjkCheckFileSize78(), radka 2244, fn=|" + strFileName + "|");			
 			return -1;
 		}		
 		,
 		function(e) {
                 // 'e' is an object, {code: 'Class not found'}
-			vMyConsoleLog("iGjkCheckFileSize77(), radka 2250, fn=|" + strFileName + "|, size=|" + metadata.size + "|");
+			vMyConsoleLog("iGjkCheckFileSize78(), radka 2250, fn=|" + strFileName + "|, size=|" + metadata.size + "|");
             alert('cdvDownloadFile129(), OK, radka 2251, entry.toURL()=|'+entry.toURL()+"|"); errorHandler(e);
         }		
 	);
 	*/
 
-    vMyConsoleLog("iGjkCheckFileSize77(), radka 2468, fn=|" + strFileName + "|, iJunk3=|" + iJunk3 + "|, iReturn=|" + iReturn + "|", 8000);
+    vMyConsoleLog("iGjkCheckFileSize78(), radka 2703, fn=|" + strFileName + "|, iJunk3=|" + iJunk3 + "|, iReturn=|" + iReturn + "|", 8000);
 
     return iReturn;
 };
 
 function iGjkCheckFileSize(fs, strFileName) {
-
 	
     return iGjkCheckFileSize77(fs, strFileName);
 
@@ -2801,6 +2890,12 @@ function vDvaMluv131(fromLang, w1, toLang, w2) { // mluv par slov najednou
         iFileSize = 0,
         urlPath = '';
 
+	if (poleDvaUzMluvilo1[fromLang] == w1 && poleDvaUzMluvilo2[toLang] == w2) {
+		vMyConsoleLog("vDvaMluv131(), radka 002856, vMluv129(lang, word), uz jsme tenet0 par zvuku mluvili!!,  lang=|" + lang + "|, word=|" + word + "|, path=|" + pathDir + "|", 8000);
+		return;
+	}
+	poleDvaUzMluvilo1[fromLang] = w1;
+	poleDvaUzMluvilo2[toLang] = w2; 
     lang = fromLang;
     word = w1;
     pathDir = path + lang + '/';
@@ -2832,10 +2927,10 @@ function vDvaMluv131(fromLang, w1, toLang, w2) { // mluv par slov najednou
     // now we have both local audio files greater than 0
     //vMluv129(fromLang, w1);
     //vMluv129(toLang, w2);
-    urlPath = CDVstrFileName;
+    urlPath = CDVstrFileName; // pokud uz dvojici nemame!
     vPridejZvuk2(urlPath, fromLang, w1);
     vPridejZvuk2(urlPath, toLang, w2);
-    alert("9, vDvaMluv131(), radka 2573, vDvaMluv131(" + fromLang + ", " + w1 + ", " + toLang + ", " + w2 + ")");
+    alert("9, vDvaMluv131(), radka 002895, vDvaMluv131(" + fromLang + ", " + w1 + ", " + toLang + ", " + w2 + ")");
 };
 
 /**
@@ -2858,27 +2953,78 @@ FileTransferError.FILE_NOT_FOUND_ERR = 1;
 FileTransferError.INVALID_URL_ERR = 2;
 FileTransferError.CONNECTION_ERR = 3;
 
-var win3 = function (rEntry) {
-		var iFileSize=0;
-		console.dir(rEntry);
-		rEntry.getMetadata(
-			  function(FF) {console.log(FF);
-			               alert("Delka souboru = " + FF.size);
-			               iFileSize = FF.size},
-			  function(EE){console.dir()});
-                alert("POCKEJ ZAJICI");
+var vGJKfileTransferWin3 = function (rEntry) { // rEntry je open? file object?
+		console.log(console); 
+		console.dir(rEntry); // to je hezke !!!
+		/*
+		http://docs.phonegap.com/en/1.4.1/phonegap_file_file.md.html
+		File Object 
+		name: The name of the FileEntry, excluding the path leading to it. (DOMString)
+		fullPath: The full absolute path from the root to the FileEntry. (DOMString)
+		NOTE: The following attributes are defined by the W3C specification, but are not supported by PhoneGap:
 
+		filesystem: The file system on which the FileEntry resides. (FileSystem)
+
+		Methods:
+
+getMetadata: Look up metadata about a file.
+moveTo: Move a file to a different location on the file system.
+copyTo: Copy a file to a different location on the file system.
+toURI: Return a URI that can be used to locate a file.
+remove: Delete a file.
+getParent: Look up the parent directory.
+createWriter: Creates a FileWriter object that can be used to write to a file.
+file: Creates a File object containing file properties.
+*/
+		var path = rEntry.toInternalURL(); vMyConsoleLog("win3(), radka 2979, iGlobalFileSize=|" +iGlobalFileSize+"|, path="+path+"|", 8000);//**THIS IS WHAT I NEED**
+		rEntry.getMetadata(
+			  function(Success_getMetadata) {
+				var iLocalFileSize=0, sql927='', pole1 = [], pole2 = [], mylang1='', myword1='';
+				iLocalFileSize = Success_getMetadata.size; 
+				console.log(Success_getMetadata);
+				
+				pole1 = path.split(".wav"); // zapamatij si delku souboru zvuk
+				pole2 = pole1[0].split("/");
+				mylang1 = mysql_real_escape_string(pole2[pole2.length - 2]);
+				myword1 = mysql_real_escape_string(pole2[pole2.length - 1]);
+				if (mylang1 == DBAPI.dbRow.toLang) 
+					sql927 = "UPDATE " + tableName + " SET a2= "+iLocalFileSize+' WHERE w2= "' + myword1+'"';
+				if (mylang1 == DBAPI.dbRow.fromLang) 
+					sql927 = "UPDATE " + tableName + " SET a1= "+iLocalFileSize+' WHERE w1= "' + myword1+'"'; 					
+				DBAPI.updateTable8(tableName, sql927, '', vypln3);
 	
-		var path = rEntry.toInternalURL(); //**THIS IS WHAT I NEED**
-		alert("path, size " + path + "  size = " +iFileSize); 
+				vMyConsoleLog("vGJKfileTransferWin3(), radka 2915, iLocalFileSize=|" + iLocalFileSize+"|, path=|"+path+
+				+"|, rEntry.name=|"+rEntry.name+"|, rEntry.fullPath=|"+rEntry.fullPath+"|, rEntry.filesystem=|"+rEntry.filesystem+"|", 0000);
+				/*
+				alert("vGJKfileTransferWin3(), radka 2915, iLocalFileSize=|" + iLocalFileSize
+				+"|, rEntry.name=|"+rEntry.name+"|, rEntry.fullPath=|"+rEntry.fullPath+"|, rEntry.filesystem=|"+rEntry.filesystem+"|");
+				*/
+				iGlobalFileSize = iLocalFileSize;
+				},
+			  function(Error_getMetadata){
+				console.dir(); 
+				iGlobalFileSize=(-9);
+				vMyConsoleLog("vGJKfileTransferWin3(), radka 002950, ERROR! failed rEntry.getMetadata(), path="+path+"|, rEntry.name=|"
+				+rEntry.name+"|, rEntry.fullPath=|"+rEntry.fullPath+"|, rEntry.filesystem=|"+rEntry.filesystem+"|", 9000);
+				/* alert("vGJKfileTransferWin3(), radka 002950, ERROR! failed rEntry.getMetadata(), path="+path++"|, rEntry.name=|"
+				+rEntry.name+"|, rEntry.fullPath=|"+rEntry.fullPath+"|, rEntry.filesystem=|"+rEntry.filesystem+"|"); */
+			  }
+		);
+ 	
+		vMyConsoleLog("vGJKfileTransferWin3(), radka 3014, iGlobalFileSize=|" +iGlobalFileSize+"|, path="+path+"|", 8000);
+		//alert("path, radka 2880, size " + path + ", iGlobalFileSize=" +iGlobalFileSize+"|"); 
 }
 
-var fail3 = function (error) {
-    alert("GKJ FileTransfer(), ERROR., An error has occurred: Code = " + error.code+", source=|"
+var vGJKfileTransferFail3 = function (error) {
+    /*
+	alert("GKJ FileTransfer(), ERROR., An error has occurred: Code = " + error.code+", source=|"
 	+error.source+"|, target=|"+error.target+"|");
-    console.log("GKJ download error source " + error.source);
-    console.log("GKJ download error target " + error.target);
-	vMyConsoleLog("2 GKJ  FileTransfer(), ERROR.",9000);
+    */
+	console.log("vGJKfileTransferFail3(), radka 2959, ERROR!, GKJ download error source " + error.source);
+    console.log("vGJKfileTransferFail3(), radka 2960, ERROR!, GKJ download error target " + error.target);
+	vMyConsoleLog("vGJKfileTransferFail3(), radka 2961, GKJ FileTransfer(), ERROR!, An error has occurred: Code = " + error.code+", source=|"
+	+error.source+"|, target=|"+error.target+"|", 9000);
+	vMyConsoleLog("vGJKfileTransferFail3(), radka 2963, ERROR!, 2 GKJ  FileTransfer(), ERROR!",9000);
 }
 
 /*
@@ -2888,7 +3034,7 @@ options.fileKey = "file";
 //options.mimeType = "text/plain";
 */
 
-function vGJKfileTransfer() {
+function vGJKfileTransfer(url16, myFilename16) {
  
  /* var options = new FileDownloadOptions();
             options.fileKey="file";
@@ -2902,7 +3048,7 @@ function vGJKfileTransfer() {
             options.params = params;
 	*/
 	
-	vMyConsoleLog("1 vGJKfileTransfer begin", 9000);
+	vMyConsoleLog("vGJKfileTransfer(), radka 3051, url16=|"+url16+"|, myFilename16=|"+myFilename16+"|" , 9000);
 	file1 = "http://www.rangde.org/static/bell-ring-01.mp3";
 	file2 = "file:///storage/sdcard/path";
 	file2 = "hobl.test1.file.transfer.mp3";
@@ -2918,7 +3064,7 @@ file:///storage/sdcard/path/to/downloads/hobl.test1.file.transfer.mp3
 path=|cdvfile://localhost/persistent/path/to/downloads/hobl.test1.file.transfer.mp3|
 
 */
-	var uri = encodeURI(file1), 
+	var uri = encodeURI(url16), 
 	fileURL = uri;
     var fileTransfer = new FileTransfer();
     var myFilename = "hobl.test1.file.transfer.mp3"; // 09-22 05:11:20.990: D/CordovaLog(1579): file:///android_asset/www/cordova.js: Line 1046 : processMessage failed: Message: F06 FileTransfer315394261 {"target":"hobl.test1.file.transfer.mp3","http_status":200,"code":1,"source":"http:\/\/www.rangde.org\/static\/bell-ring-01.mp3","exception":"\/hobl.test1.file.transfer.mp3: open failed: EROFS (Read-only file system)"}
@@ -2927,12 +3073,96 @@ path=|cdvfile://localhost/persistent/path/to/downloads/hobl.test1.file.transfer.
 	myFilename = "cdvfile://localhost/persistent/path/to/downloads/hobl.test1.file.transfer.mp3"; // 09-22 06:01:46.850: D/CordovaLog(1617): file:///android_asset/www/cordova.js: Line 1046 : processMessage failed: Message: S01 FileTransfer846206641 {"fullPath":"\/path\/to\/downloads\/hobl.test1.file.transfer.mp3","filesystemName":"persistent","isDirectory":false,"nativeURL":"file:\/\/\/storage\/sdcard\/path\/to\/downloads\/hobl.test1.file.transfer.mp3","filesystem":1,"isFile":true,"name":"hobl.test1.file.transfer.mp3"}
 	myFilename = file2;
 
-    //fileTransfer.download(uri, myFilename,  win3, fail3, options3);
-	//fileTransfer.download(uri, myFilename,  win3, fail3, options, true);
-    fileTransfer.download(uri, myFilename,  win3, fail3, false, true);
+    //fileTransfer.download(uri, myFilename,  vGJKfileTransferWin3, vGJKfileTransferFail3, options3);
+	//fileTransfer.download(uri, myFilename,  vGJKfileTransferWin3, vGJKfileTransferFail3, options, true);
+    fileTransfer.download(uri, myFilename16,  vGJKfileTransferWin3, vGJKfileTransferFail3, false, true);
 	
 	vMyConsoleLog("3 vGJKfileTransfer end");
-	alert("3 vGJKfileTransfer end");
+	//alert("3 vGJKfileTransfer end");
+};
+
+  
+    // Query the database
+    //
+    function queryDB8164(sql2) {
+	try {
+		vMyConsoleLog("queryDB8164(), radka 3079, sql2=|"+sql2+"|"); // http://stackoverflow.com/questions/6780911/web-sql-transaction-returns-empty
+        Gjkdb.transaction(function(tx) {
+			tx.executeSql(sql2, [], querySuccess8164, errorCB8164);
+		}
+		);
+	} catch (err) { vMyConsoleLog("queryDB8164(), radka 3085, catch(err), table=|" + TableName + "|, sql2=|" + sql2 + "|, err=" + err + "|", 9000);
+        alert("queryDB8164(), radka 3085, catch(err), table=|" + TableName + "|, sql2=|" + sql2 + "|, err=" + err + "|");
+    }
+    }
+
+    // Query the success callback
+    //
+    function querySuccess8164(tx, results) {
+        var len = results.rows.length, iZ=0; console.dir(results); console.dir(results.rows); console.dir(results.rows.item);console.dir(results.rows.item(0).aaa);
+        console.log("querySuccess8164(), radka 3093, DEMO table: " + len + " rows found.");
+        for (var i=0; i<len; i++){ iZ=results.rows.item(i).aaa; if (isNaN(iZ)) iZ = (-14);
+            vMyConsoleLog("querySuccess8164(), radka 3095, Row = " + i + " ID = " + iZ + " Data =  " + iZ);
+			iGlobal1392 = iZ
+			if (isNaN(iZ)) iGlobal1392 = (-15);
+			return(iGlobal1392);
+        }
+    }
+
+    // Transaction error callback
+    //
+    function errorCB8164(err) {
+        vMyConsoleLog("querySuccess8164(), radka 3093, Error processing SQL: "+err.code, 9000);
+    }
+	
+function mysql_real_escape_string(str) { 
+	str = str || ''; 
+	if (str.len < 1) return (str);
+    return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function (char) {
+        switch (char) {
+            case "\0":
+                return "\\0";
+            case "\x08":
+                return "\\b";
+            case "\x09":
+                return "\\t";
+            case "\x1a":
+                return "\\z";
+            case "\n":
+                return "\\n";
+            case "\r":
+                return "\\r";
+            case "\"":
+            case "'":
+            case "\\":
+            case "%":
+                return "\\"+char; // prepends a backslash to backslash, percent,
+                                  // and double/single quotes
+        }
+    });
+}
+
+var CUBRID_RDBMS_escapeString = function (val) { return val; // nedelej nic !!!
+  val.replace(/[\0\n\r\b\t\\\'\"\x1a]/g, function (s) {
+    switch (s) {
+      case "\0":
+        return "\\0";
+      case "\n":
+        return "\\n";
+      case "\r":
+        return "\\r";
+      case "\b":
+        return "\\b";
+      case "\t":
+        return "\\t";
+      case "\x1a":
+        return "\\Z";
+      default:
+        return "\\" + s;
+    }
+  });
+
+  return val;
 };
 
 function vMyConsoleLog(str, severity){
@@ -2942,89 +3172,22 @@ function vMyConsoleLog(str, severity){
 	}
 }
 /*
+09-24 06:07:00.780: D/CordovaLog(1354): file:///android_asset/www/DBapi.js: Line 2948 : iGjkCheckFileSize77(), radka 2598, fn=|cdvfile://localhost/persistent/path/to/downloads/DATA/AUDIO/en/date.wav|, iFoo=|684|
 
-09-22 08:43:31.710: D/FileTransfer(1902): Saved file: cdvfile://localhost/persistent/path/to/downloads/hobl.test1.file.transfer.mp3
-
-
-09-22 08:43:42.400: D/CordovaLog(1902): file:///android_asset/www/DBapi.js: Line 2951 : iGjkCheckFileSize77(), radka 2598, fn=|cdvfile://localhost/persistent/path/to/downloads/hobl.test1.file.transfer.mp3|, iFoo=|10104|
-
-09-22 08:43:42.400: I/chromium(1902): [INFO:CONSOLE(2951)] "iGjkCheckFileSize77(), radka 2598, fn=|cdvfile://localhost/persistent/path/to/downloads/hobl.test1.file.transfer.mp3|, iFoo=|10104|", source: file:///android_asset/www/DBapi.js (2951)
-
-09-22 08:43:42.430: D/AudioPlayer(1902): renaming /storage/sdcard/tmprecording.3gp to /storage/sdcard/cdvfile://localhost/persistent/path/to/downloads/hobl.test1.file.transfer.mp3
-
-09-22 08:43:42.440: E/AudioPlayer(1902): FAILED renaming /storage/sdcard/tmprecording.3gp to /storage/sdcard/cdvfile://localhost/persistent/path/to/downloads/hobl.test1.file.transfer.mp3
-
-09-22 08:43:42.440: W/PluginManager(1902): THREAD WARNING: exec() call to Media.release blocked the main thread for 26ms. Plugin should use CordovaInterface.getThreadPool().
-
-09-22 08:43:42.470: D/CordovaLog(1902): file:///android_asset/www/cordova.js: Line 1044 : processMessage failed: Error: ReferenceError: alarm is not defined
-09-22 08:43:42.470: I/chromium(1902): [INFO:CONSOLE(1044)] "processMessage failed: Error: ReferenceError: alarm is not defined", source: file:///android_asset/www/cordova.js (1044)
-09-22 08:43:42.550: D/CordovaLog(1902): file:///android_asset/www/cordova.js: Line 1045 : processMessage failed: Stack: ReferenceError: alarm is not defined
-09-22 08:43:42.550: D/CordovaLog(1902):     at null.successCallback (file:///android_asset/www/DBapi.js:2603:18)
-09-22 08:43:42.550: D/CordovaLog(1902):     at Function.Media.onStatus (file:///android_asset/www/plugins/org.apache.cordova.media/www/Media.js:172:52)
-09-22 08:43:42.550: D/CordovaLog(1902):     at eval (eval at processMessage (file:///android_asset/www/cordova.js:1006:26), <anonymous>:1:51)
-09-22 08:43:42.550: D/CordovaLog(1902):     at processMessage (file:///android_asset/www/cordova.js:1006:13)
-09-22 08:43:42.550: D/CordovaLog(1902):     at Function.androidExec.processMessages (file:///android_asset/www/cordova.js:1076:13)
-09-22 08:43:42.550: D/CordovaLog(1902):     at pollOnce (file:///android_asset/www/cordova.js:944:17)
-09-22 08:43:42.550: D/CordovaLog(1902):     at pollOnceFromOnlineEvent (file:///android_asset/www/cordova.js:939:5)
-09-22 08:43:42.550: D/CordovaLog(1902):     at vGJKfileTransfer (file:///android_asset/www/DBapi.js:2945:2)
-09-22 08:43:42.550: D/CordovaLog(1902):     at Object.DBAPI.automaticaudio (file:///android_asset/www/DBapi.js:1991:1)
-09-22 08:43:42.550: D/CordovaLog(1902):     at HTMLAnchorElement.onclick (file:///android_asset/www/index.html:655:152)
-09-22 08:43:42.550: I/chromium(1902): [INFO:CONSOLE(1045)] "processMessage failed: Stack: ReferenceError: alarm is not defined
-09-22 08:43:42.550: I/chromium(1902):     at null.successCallback (file:///android_asset/www/DBapi.js:2603:18)
-09-22 08:43:42.550: I/chromium(1902):     at Function.Media.onStatus (file:///android_asset/www/plugins/org.apache.cordova.media/www/Media.js:172:52)
-09-22 08:43:42.550: I/chromium(1902):     at eval (eval at processMessage (file:///android_asset/www/cordova.js:1006:26), <anonymous>:1:51)
-09-22 08:43:42.550: I/chromium(1902):     at processMessage (file:///android_asset/www/cordova.js:1006:13)
-09-22 08:43:42.550: I/chromium(1902):     at Function.androidExec.processMessages (file:///android_asset/www/cordova.js:1076:13)
-09-22 08:43:42.550: I/chromium(1902):     at pollOnce (file:///android_asset/www/cordova.js:944:17)
-09-22 08:43:42.550: I/chromium(1902):     at pollOnceFromOnlineEvent (file:///android_asset/www/cordova.js:939:5)
-09-22 08:43:42.550: I/chromium(1902):     at vGJKfileTransfer (file:///android_asset/www/DBapi.js:2945:2)
-09-22 08:43:42.550: I/chromium(1902):     at Object.DBAPI.automaticaudio (file:///android_asset/www/DBapi.js:1991:1)
-09-22 08:43:42.550: I/chromium(1902):     at HTMLAnchorElement.onclick (file:///android_asset/www/index.html:655:152)", source: file:///android_asset/www/cordova.js (1045)
-09-22 08:43:42.560: D/CordovaLog(1902): file:///android_asset/www/cordova.js: Line 1046 : processMessage failed: Message: Jcordova.require('org.apache.cordova.media.Media').onStatus('e6017caf-d812-96c5-f19a-a2c6e47ecfa4', 1, 4);
-09-22 08:43:42.560: I/chromium(1902): [INFO:CONSOLE(1046)] "processMessage failed: Message: Jcordova.require('org.apache.cordova.media.Media').onStatus('e6017caf-d812-96c5-f19a-a2c6e47ecfa4', 1, 4);", source: file:///android_asset/www/cordova.js (1046)
-
-*/
-
-/*
-09-22 08:55:50.760: D/FileTransfer(3662): Saved file: cdvfile://localhost/persistent/path/to/downloads/hobl.test1.file.transfer.mp3
-
-09-22 08:55:51.000: D/CordovaLog(3662): file:///android_asset/www/cordova.js: Line 1044 : processMessage failed: Error: ReferenceError: alarm is not defined
-09-22 08:55:51.000: I/chromium(3662): [INFO:CONSOLE(1044)] "processMessage failed: Error: ReferenceError: alarm is not defined", source: file:///android_asset/www/cordova.js (1044)
-09-22 08:55:51.010: D/AudioPlayer(3662): Send a onStatus update for the new seek
-09-22 08:55:51.030: D/AudioSink(54): bufferCount (4) is too small and increased to 12
-09-22 08:55:51.070: E/AudioSink(54): received unknown event type: 1 inside CallbackWrapper !
-09-22 08:55:51.140: D/CordovaLog(3662): file:///android_asset/www/cordova.js: Line 1045 : processMessage failed: Stack: ReferenceError: alarm is not defined
-09-22 08:55:51.140: D/CordovaLog(3662):     at iGjkCheckFileSize77 (file:///android_asset/www/DBapi.js:2618:2)
-09-22 08:55:51.140: D/CordovaLog(3662):     at win3 (file:///android_asset/www/DBapi.js:2880:15)
-09-22 08:55:51.140: D/CordovaLog(3662):     at win (file:///android_asset/www/plugins/org.apache.cordova.file-transfer/www/FileTransfer.js:189:13)
-09-22 08:55:51.140: D/CordovaLog(3662):     at Object.cordova.callbackFromNative (file:///android_asset/www/cordova.js:292:54)
-09-22 08:55:51.140: D/CordovaLog(3662):     at processMessage (file:///android_asset/www/cordova.js:1039:21)
-09-22 08:55:51.140: D/CordovaLog(3662):     at Function.androidExec.processMessages (file:///android_asset/www/cordova.js:1076:13)
-09-22 08:55:51.140: D/CordovaLog(3662):     at pollOnce (file:///android_asset/www/cordova.js:944:17)
-09-22 08:55:51.140: D/CordovaLog(3662):     at pollOnceFromOnlineEvent (file:///android_asset/www/cordova.js:939:5)
-09-22 08:55:51.140: D/CordovaLog(3662):     at vGJKfileTransfer (file:///android_asset/www/DBapi.js:2946:2)
-09-22 08:55:51.140: D/CordovaLog(3662):     at Object.DBAPI.automaticaudio (file:///android_asset/www/DBapi.js:1991:1)
-09-22 08:55:51.140: I/chromium(3662): [INFO:CONSOLE(1045)] "processMessage failed: Stack: ReferenceError: alarm is not defined
-09-22 08:55:51.140: I/chromium(3662):     at iGjkCheckFileSize77 (file:///android_asset/www/DBapi.js:2618:2)
-09-22 08:55:51.140: I/chromium(3662):     at win3 (file:///android_asset/www/DBapi.js:2880:15)
-09-22 08:55:51.140: I/chromium(3662):     at win (file:///android_asset/www/plugins/org.apache.cordova.file-transfer/www/FileTransfer.js:189:13)
-09-22 08:55:51.140: I/chromium(3662):     at Object.cordova.callbackFromNative (file:///android_asset/www/cordova.js:292:54)
-09-22 08:55:51.140: I/chromium(3662):     at processMessage (file:///android_asset/www/cordova.js:1039:21)
-09-22 08:55:51.140: I/chromium(3662):     at Function.androidExec.processMessages (file:///android_asset/www/cordova.js:1076:13)
-09-22 08:55:51.140: I/chromium(3662):     at pollOnce (file:///android_asset/www/cordova.js:944:17)
-09-22 08:55:51.140: I/chromium(3662):     at pollOnceFromOnlineEvent (file:///android_asset/www/cordova.js:939:5)
-09-22 08:55:51.140: I/chromium(3662):     at vGJKfileTransfer (file:///android_asset/www/DBapi.js:2946:2)
-09-22 08:55:51.140: I/chromium(3662):     at Object.DBAPI.automaticaudio (file:///android_asset/www/DBapi.js:1991:1)", source: file:///android_asset/www/cordova.js (1045)
-09-22 08:55:51.140: D/CordovaLog(3662): file:///android_asset/www/cordova.js: Line 1046 : processMessage failed: Message: S01 FileTransfer912720097 {"fullPath":"\/path\/to\/downloads\/hobl.test1.file.transfer.mp3","filesystemName":"persistent","isDirectory":false,"nativeURL":"file:\/\/\/storage\/sdcard\/path\/to\/downloads\/hobl.test1.file.transfer.mp3","filesystem":1,"isFile":true,"name":"hobl.test1.file.transfer.mp3"}
-09-22 08:55:51.140: I/chromium(3662): [INFO:CONSOLE(1046)] "processMessage failed: Message: S01 FileTransfer912720097 {"fullPath":"\/path\/to\/downloads\/hobl.test1.file.transfer.mp3","filesystemName":"persistent","isDirectory":false,"nativeURL":"file:\/\/\/storage\/sdcard\/path\/to\/downloads\/hobl.test1.file.transfer.mp3","filesystem":1,"isFile":true,"name":"hobl.test1.file.transfer.mp3"}", source: file:///android_asset/www/cordova.js (1046)
-09-22 08:55:51.250: E/AudioSink(54): received unknown event type: 1 inside CallbackWrapper !
-09-22 08:56:00.610: E/MP3Extractor(54): Unable to resync. Signalling end of stream.
-09-22 08:56:01.360: D/AudioPlayer(3662): on completion is calling stopped
-09-22 08:56:01.390: D/CordovaLog(3662): file:///android_asset/www/DBapi.js: Line 2952 : iGjkCheckFileSize77(), radka 2598, fn=|cdvfile://localhost/persistent/path/to/downloads/hobl.test1.file.transfer.mp3|, iFoo=|10104|
-09-22 08:56:01.390: I/chromium(3662): [INFO:CONSOLE(2952)] "iGjkCheckFileSize77(), radka 2598, fn=|cdvfile://localhost/persistent/path/to/downloads/hobl.test1.file.transfer.mp3|, iFoo=|10104|", source: file:///android_asset/www/DBapi.js (2952)
-09-22 08:56:01.430: D/AudioPlayer(3662): renaming /storage/sdcard/tmprecording.3gp to /storage/sdcard/cdvfile://localhost/persistent/path/to/downloads/hobl.test1.file.transfer.mp3
-09-22 08:56:01.430: E/AudioPlayer(3662): FAILED renaming /storage/sdcard/tmprecording.3gp to /storage/sdcard/cdvfile://localhost/persistent/path/to/downloads/hobl.test1.file.transfer.mp3
-09-22 08:56:01.440: W/PluginManager(3662): THREAD WARNING: exec() call to Media.release blocked the main thread for 30ms. Plugin should use CordovaInterface.getThreadPool().
-09-22 08:56:01.460: D/CordovaLog(3662): file:///android_asset/www/cordova.js: Line 1044 : processMessage failed: Error: ReferenceError: alarm is not defined
-
+09-24 08:00:21.910: D/dalvikvm(465): GC_FOR_ALLOC freed 514K, 16% free 3203K/3792K, paused 22ms, total 30ms
+09-24 08:00:22.730: D/dalvikvm(465): GC_FOR_ALLOC freed 512K, 16% free 3202K/3792K, paused 23ms, total 28ms
+09-24 08:00:23.520: D/dalvikvm(465): GC_FOR_ALLOC freed 521K, 16% free 3193K/3792K, paused 24ms, total 31ms
+09-24 08:00:24.690: D/dalvikvm(465): GC_FOR_ALLOC freed 519K, 16% free 3186K/3792K, paused 21ms, total 25ms
+09-24 08:00:25.010: E/MediaScannerJNI(465): An error occurred while scanning file '/storage/sdcard/path/to/downloads/DATA/AUDIO/fr/à moins de.wav'.
+09-24 08:00:25.260: E/MediaScannerJNI(465): An error occurred while scanning file '/storage/sdcard/path/to/downloads/DATA/AUDIO/fr/tout à fait.wav'.
+09-24 08:00:26.260: E/MediaScannerJNI(465): An error occurred while scanning file '/storage/sdcard/path/to/downloads/DATA/AUDIO/fr/à eux.wav'.
+09-24 08:00:26.300: E/MediaScannerJNI(465): An error occurred while scanning file '/storage/sdcard/path/to/downloads/DATA/AUDIO/fr/groupe de travail.wav'.
+09-24 08:00:26.920: D/dalvikvm(465): GC_FOR_ALLOC freed 484K, 16% free 3213K/3792K, paused 32ms, total 38ms
+09-24 08:00:27.260: E/MediaScannerJNI(465): An error occurred while scanning file '/storage/sdcard/path/to/downloads/DATA/AUDIO/fr/au dehors.wav'.
+09-24 08:00:28.000: D/dalvikvm(465): GC_FOR_ALLOC freed 503K, 16% free 3222K/3800K, paused 23ms, total 25ms
+09-24 08:00:28.230: E/MediaScannerJNI(465): An error occurred while scanning file '/storage/sdcard/path/to/downloads/DATA/AUDIO/fr/système économique.wav'.
+09-24 08:00:28.740: D/dalvikvm(465): GC_FOR_ALLOC freed 492K, 15% free 3241K/3808K, paused 23ms, total 26ms
+09-24 08:00:28.940: E/MediaScannerJNI(465): An error occurred while scanning file '/storage/sdcard/path/to/downloads/DATA/AUDIO/fr/mot de passe.wav'.
+09-24 08:00:29.730: D/dalvikvm(465): GC_FOR_ALLOC freed 527K, 16% free 3226K/3828K, paused 27ms, total 30ms
+09-24 08:00:29.810: I/MediaFocusControl(377):  AudioFocus  abandonAudioFocus() from android.media.AudioManager@b2d13630com.android.music.MediaPlaybackService$3@b2d124b0
 */

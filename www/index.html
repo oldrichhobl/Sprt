@@ -137,7 +137,7 @@ function loadXMLDoc(dname) {
 <script>
     $.ui.autoLaunch  = false;
     $.ui.useOSThemes = false; //Change this to false to force a device theme
-    $.ui.blockPageScroll();
+    // $.ui.blockPageScroll();
     $(document).ready(function () {
         if ($.ui.useOSThemes && !$.os.ios && $("#afui").get(0).className !== "ios")
             $("#afui").removeClass("ios");
@@ -357,12 +357,12 @@ $.ui.ready(
 		//console.log(entry);
 		
 		  //s = s + "<br/>" +  DBAPI.dbRow.w2[p];
-		  /*
-		    s = s + strCarka + w2 + "(" 
-		   + '&nbsp;<font size="5" color="' + iColor1 + '">' 
-		   + w1 + " (" + v1 + ", " 
-		   +   Math.round(l1 * 100) + "%)" + ")" + "' </font>" ;
-		   */
+		 
+		 //   s = s + strCarka + w2 + "(" 
+		 //  + '&nbsp;<font size="5" color="' + iColor1 + '">' 
+		 //  + w1 + " (" + v1 + ", " 
+		 //  +   Math.round(l1 * 100) + "%)" + ")" + "' </font>" ;
+		  // 
 		   
 		   s = s + strCarka + w2 
 		   + "'" + '&nbsp;<font size="3" color="' + iColor1 + '">' 
@@ -459,7 +459,7 @@ $.ui.ready(
 		};
 	};
 	
-	console.log(s3);
+	console.log("vypln " + s3);
 	
 	   s='<div id="tabs-0" class="tab"> <div id="Word1"> ' +  '<font color="' + iColor1 + '">' +
        slovo.w1 + "</font>" +
@@ -542,7 +542,76 @@ $.ui.ready(
 	  // DBAPI.dbRow.nowLang = DBAPI.dbRow.fromLang; // jazyk pred otocenim
     }
     
+   // Zobrazeni slova na strance Automatic audio
+  function vyplnAutomatic(slovo)
+   // slovo je objekt (dbRow) obsahujici slova v obou jazycich
+    {
+      var s = '', s2='';
+	  
+    iColor1 = 'green'; //'lime';
+	iColor2 = 'lime'; //'orange';
+	iColor3 = 'magenta';
+	iColor4 = 'red'; //#F75D59'; // red
+	
+	s2 = slovo.w2.toString();
+	s3 = slovo.w2;
+	s4 = s2;
+	//if( Object.prototype.toString.call( someVar ) === '[object Array]' ) {
+	if (s3.isArray) {
+		for (var p in s3) {
+			var s5='', carka = ",?", iC=0;
+			console.log("----s5=|" + s5 + '|');
+			s5 = s5 + s3[p] + carka;
+		if (iC > 4) {
+		carka = ",!<P>";
+		iC=0;
+		}
+		else {
+		iC++;
+		}
+		s4 = s5;
+		};
+	}
+	else {
+	s3 = s2.split(','); // s3 je string
+	for (var p in s3) {
+			var s5='', carka = " ", iC=0;
+			//console.log("----s5=|" + s5 + '|');
+			s5 = s5 + s3[p] + carka;
+		if (iC > 4) {
+		carka = ",<P>";
+		iC=0;
+		}
+		else {
+		iC++;
+		carka = ", ";
+		}
+		s4 = s5;
+		};
+	};
+	
+	console.log("vyplnAutomatic " + s3);
+	
+       s='<div class="slovoAuto"> <div> ' +  '<font color="' + iColor1 + '">' +
+       slovo.w1 + "</font>" +
+       '</div> <div> ' +  '<font color="' + iColor4 + '">' +
+       s4 + "</font>" +
+       '</div></div> ';	  
+       
+	   // console.log(DBAPI.result7); global na zobrazeni
+	   
+      $("#slovoAutoList").append(s);
 
+      };
+	   
+   
+    function clearList()
+    {
+      $("#slovoAutoList").empty();
+    }
+    
+    
+    
    // action sheet =  volba na spodu obrazofky
    function actionmy(){
    $.ui.actionsheet("<a href='javascript:;' class='button'>S e t u p</a>"+ 
@@ -652,32 +721,21 @@ $.ui.ready(
                 <a class="button big gray"   
                           onclick="DBAPI.onlyaudio();">Only Audio</a>
                 <a class="button big gray"   
-                          onclick="DBAPI.automaticaudio();">Automatic Audio</a>
+                          onclick="DBAPI.automaticaudio();">Automatic Audio </a>
+                <a class="button big gray"   
+                          href="javascript:gotoPage('Automatic');DBAPI.neznam(); DBAPI.dejNextSlovo(vyplnAutomatic);">Page auto </a>
             </div>
   <hr/>      
         </div>
         
-        <!-- ************  P A N E L   Kviz *****************************   -->
-        <div class="panel bgkviz" title="Testování souborů a zvuků" data-nav="nav_0" id="Kviz" >
-        <h1>T e s t  zakladnich zvuku </h1>
-        <div class="button-grouped vertical">
-         
-        <a class="button  big"   
-           onclick="javascript:playFile('/android_asset/www/pg01.wav');">(./sounds/pg01.wav)</a>
-        <a class="button  big"   
-           onclick="javascript:playFile('/android_asset/www/pg01.wma');">(./sounds/pg01.wma)</a>
-        <a class="button  big"   
-           onclick="javascript:playFile('/android_asset/www/Hlas026.mp3');">(Hlas026.mp3)</a>
-        
-        <a class="button  big"   
-           onclick="javascript:playFile(cordova.file.dataDirectory + 'ket2.mp3');">ket2newfile.mp3 </a>
-        <hr/>
-        <a class="button  big"   
-           onclick="javascript:alert('fileSystem' + fileSystem);">fileSystem</a>
-        <a class="button  big"   
-           onclick="javascript:alert('cordova.file.dataDirectory ' + cordova.file.dataDirectory);">cordova.file.dataDirectory</a>
+        <!-- ************  P A N E L   Automatic *****************************   -->
+        <div class="panel" title="Automaticke prehravani" data-nav="nav_Automatic" id="Automatic" data-footer="AutomaticFooter" >
+        <div  id="slovoAuto" >
+          <ul  class="list" id="slovoAutoList">
+          
+          </ul>
         </div>
-         
+        
       </div>
         
         
@@ -939,20 +997,37 @@ function reply_clickGJK3(clicked_id, url)
         <a id="backButton" href="#" class="button back" style="visibility: visible; ">Back</a>
         <h1 id="pageTitle" class="">Test</h1> 
     </header>
+    
     <div id="navbar">
         <a href="#Zkouseni" class="icon home">Learn</a>
-        <a href="#Kviz" class="icon picture">Test</a>
+        <a  href="#Automatic" class="icon picture">Automat</a>
         <a href="#Historie" class="icon info">Stat</a>
         <a href="#nastav" class="icon settings">Setup</a>
     </div>
+    <footer id="AutomaticFooter">
+        <a href="#Zkouseni" class="icon fa-backward"></a>
+        <a href="javascript:clearList();" class="icon fa-stop"></a>
+        <a href="javascript:DBAPI.neznam(); DBAPI.dejNextSlovo(vyplnAutomatic);" class="icon fa-pause"></a>
+        <a href="javascript:DBAPI.neznam(); DBAPI.dejNextSlovo(vyplnAutomatic);" class="icon fa-play"></a>
+        <a href="javascript:DBAPI.neznam(); DBAPI.dejNextSlovo(vyplnAutomatic);" class="icon fa-forward"></a>
+    </footer>
 
 
     <nav id="nav_0" >
        <ul class="list">
         <li><a href="#Zkouseni" class="icon home">Zkoušení</a></li>
-        <li><a href="#Kviz" class="icon picture">Kvíz</a></li>
+        <li><a href="#Automatic" class="icon picture">Automat</a></li>
         <li><a href="#Historie" class="icon info">Výběr lekce</a></li>
         <li><a href="#nastav" class="icon settings">Setup</a></li>
+        </ul>
+    </nav>
+   <!-- navigace pro stranku Automatic audio -->
+    <nav id="nav_Automatic" >
+       <ul class="list">
+        <li><a href="#Zkouseni" class="icon home">Zpet</a></li>
+        <li><a href="#Automatic" class="icon picture">Stop</a></li>
+        <li><a href="#Historie" class="icon info">Repeat</a></li>
+        <li><a href="#nastav" class="icon settings">Cyclic</a></li>
         </ul>
     </nav>
 </div>

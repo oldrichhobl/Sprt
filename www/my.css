@@ -130,6 +130,19 @@ tr td {font:8pt Verdana; border-bottom:1px solid #CC88CC}
   font-size: 26pt;
   color:black;
 }
+.slovoAuto {
+  width:90%;
+  height:75%;
+  border: white 4px solid;
+  border-radius:16px;
+  background: lightgray;
+  margin:10 10 10 10;
+  padding:15px;
+  text-align: center;
+  font-size: 24pt;
+  color:black;
+}
+
 .tlacidla {
   width:85%;
   margin:auto;	
